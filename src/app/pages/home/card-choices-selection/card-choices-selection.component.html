@@ -1,0 +1,15 @@
+<div class="header">Towards a Healthy New Year</div>
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let item of displayList" [size]="item.size">
+      <div>
+        <ion-card [ngStyle]="{ 
+            'height': item.height,
+            'width': item.width,
+            'top' : item.top}" class="leftCard">
+          <img [src]="item.image" />
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

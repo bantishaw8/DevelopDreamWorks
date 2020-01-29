@@ -1,0 +1,19 @@
+<ion-toolbar>
+  <ion-buttons>
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <app-information-cards></app-information-cards>
+  <app-card-choices-selection></app-card-choices-selection>
+  <app-trending-products></app-trending-products>
+
+  <ion-card *ngIf="user">
+    <ion-card-header>
+      <ion-card-subtitle>Welcome</ion-card-subtitle>
+      <ion-card-title>{{user.firstName}} {{user.lastName}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-button expand="block" size="medium" type="reset" (click)="logout()">Logout</ion-button>
+</ion-content>
