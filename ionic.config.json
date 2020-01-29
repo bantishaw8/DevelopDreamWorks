@@ -1,6 +1,8 @@
 {
   "name": "DreamWorksProject",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular",
   "id": "5d24bcbb"
 }
