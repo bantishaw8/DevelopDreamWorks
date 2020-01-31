@@ -15,6 +15,34 @@ export class AuthPage implements OnInit {
   authForm: FormGroup;
   returnUrl: string;
   loading = false;
+  isLogin = true;
+  registerForm =  {
+    email: [
+      null,
+      [Validators.required, Validators.email]
+    ],
+    password: [null, [Validators.required, Validators.minLength(6)]],
+    fname: [
+      null,
+      [Validators.required]
+    ],
+    sname: [
+      null,
+      [Validators.required]
+    ],
+    phone: [
+      null,
+      [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]
+    ]
+  };
+
+  loginForm = {
+    email: [
+      "dreamWorks@gmail.com",
+      [Validators.required, Validators.email]
+    ],
+    password: [null, [Validators.required, Validators.minLength(6)]]
+  }
 
   constructor(
     private router: Router,
@@ -28,13 +56,7 @@ export class AuthPage implements OnInit {
 
   ngOnInit() {
     this.authForm = this.formBuilder.group(
-      {
-        email: [
-          "dreamWorks@gmail.com",
-          [Validators.required, Validators.email]
-        ],
-        password: ["password", [Validators.required, Validators.minLength(6)]]
-      },
+      this.loginForm,
       {}
     );
 
@@ -43,26 +65,40 @@ export class AuthPage implements OnInit {
 
   onSubmit(value: any): void {
     this.submitted = true;
-
     // Stop if the form validation has failed
     if (this.authForm.invalid) {
       return;
     }
 
-    this.loading = true;
-    this.authService
-      .login(this.frm.email.value, this.frm.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.loading = false;
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.presentAlert(error.error.message);
-          this.loading = false;
-        }
-      );
+    if (this.isLogin === true){
+      this.loading = true;
+      this.authService
+        .login(this.frm.email.value, this.frm.password.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.loading = false;
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.presentAlert(error.error.message);
+            this.loading = false;
+          }
+        );
+    } else {
+      this.loading = true;
+      this.authService
+        .register(value).subscribe(
+          data => {
+            this.loading = false;
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.presentAlert(error.error.message);
+            this.loading = false;
+          }
+        )
+    }
   }
 
   onReset() {
@@ -70,8 +106,21 @@ export class AuthPage implements OnInit {
     this.authForm.reset();
   }
 
-  onRegister(){
-    // codeing inprogress ..
+  onSwitchAuthMode() {
+    
+    this.isLogin = !this.isLogin;
+    if(this.isLogin){
+      this.authForm = this.formBuilder.group(
+        this.loginForm,
+        {}
+      );
+    } else {
+      this.authForm = this.formBuilder.group(
+        this.registerForm,
+        {}
+      );
+    }
+
   }
 
   async presentAlert(msg) {

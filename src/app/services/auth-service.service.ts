@@ -40,6 +40,11 @@ export class AuthServiceService {
       );
   }
 
+  public register(userInfo: any) {
+    return this.http
+      .post<any>(`${environment.bffUrl}/users/register`, userInfo);
+  }
+
   public logout() {
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
