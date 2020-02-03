@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { ToastController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
 
 
@@ -59,10 +60,9 @@ export class AuthPage implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authService: AuthServiceService,
-    private alertController: AlertController
-  ) {
-    //this.router.navigate(["/"]);
-  }
+    private alertController: AlertController,
+    private toastController: ToastController,
+  ) {}
 
   ngOnInit() {
     this.authForm = this.formBuilder.group(
@@ -74,7 +74,6 @@ export class AuthPage implements OnInit {
   }
 
   onSubmit(value: any): void {
-    console.log("value : ",value)
     this.submitted = true;
     // Stop if the form validation has failed
     if (this.authForm.invalid) {
@@ -86,26 +85,42 @@ export class AuthPage implements OnInit {
       this.authService
         .login(value)
         .subscribe(
-          data => {
-            this.loading = false;
-            this.router.navigate([this.returnUrl]);
+          async data => {
+            if (data.response === 'success') {
+              this.loading = false;
+              this.router.navigate(["/home"]);
+            } else {
+              const toast = await this.toastController.create({
+                message: data.message,
+                duration: 2000
+              });
+              toast.present();
+              this.loading = false;
+            }
           },
           error => {
             this.presentAlert(error.error.message);
             this.loading = false;
           }
         );
-      this.loading = false;
-      this.router.navigate([this.returnUrl]);
     } else {
       this.loading = true;
       this.authService
         .register(value).subscribe(
-          data => {
+          async data => {
+            if(data.response === 'success'){
             this.loading = false;
-            this.router.navigate([this.returnUrl]);
-          },
-          error => {
+            this.router.navigate(["/home"]);
+          } else {
+            const toast = await this.toastController.create({
+              message: data.message,
+              duration: 2000
+            });
+            toast.present();
+            this.loading = false;
+          }
+        },
+        error => {
             this.presentAlert(error.error.message);
             this.loading = false;
           }
@@ -144,7 +159,6 @@ export class AuthPage implements OnInit {
   }
 
   enableCheckedReference(status) {
-    console.log("statys : ",status)
     if(status) {
       this.enableReferralCode = false;
       this.checkedRefferal = false;

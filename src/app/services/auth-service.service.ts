@@ -32,35 +32,15 @@ export class AuthServiceService {
   };
 
   public login(phone: any) {
-   // const headers = new HttpHeaders().set("Content-Type", "application/json");
-
     return this.http
       .post<any>(`${environment.bffUrl}/loginUser`, phone, this.httpOptions)
       .pipe(
         map(user => {
-          console.log("user ====>", user);
-          // let localData = {
-          //   "user"  : user.phone
-          // };
-          // user.authdata = window.btoa(email + ":" + password);
           localStorage.setItem("currentUser", JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
       );
-    // newUserSignUp(account) {
-    // return new Promise((resolve, reject) => {
-    //   let headers = new Headers();
-    //   headers.append('Content-Type', 'application/json');
-    //   this.http.post(`${environment.bffUrl}/loginUser`, phone, { headers: headers })
-    //     .subscribe(res => {
-    //       this.settingsInformation = res.json();
-    //       resolve(res.json());
-    //       }, (err) => {
-    //       reject(err);
-    //     });
-    // });
-    // }
   }
 
   public register(userInfo: any) {
@@ -68,13 +48,8 @@ export class AuthServiceService {
     .post<any>(`${environment.bffUrl}/register`, userInfo, this.httpOptions)
     .pipe(
       map(user => {
-        console.log("user ====>", user);
-        // let localData = {
-        //   "user"  : user.phone
-        // };
-        // user.authdata = window.btoa(email + ":" + password);
-       // localStorage.setItem("currentUser", JSON.stringify(user));
-       // this.currentUserSubject.next(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        this.currentUserSubject.next(user);
         return user;
       })
     );
