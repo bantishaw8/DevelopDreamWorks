@@ -5,8 +5,12 @@
 </ion-toolbar>
 
 <ion-content>
-  <app-information-cards></app-information-cards>
-  <app-card-choices-selection></app-card-choices-selection>
+  <div *ngIf="firstCard.length">
+    <app-information-cards [InformationData]="firstCard"></app-information-cards>
+  </div>
+  <div *ngIf="secondCard.length">
+    <app-card-choices-selection [ChoiceData]="secondCard"></app-card-choices-selection>
+  </div>
   <app-trending-products></app-trending-products>
 
   <ion-card *ngIf="user">

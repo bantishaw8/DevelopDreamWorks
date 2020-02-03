@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-choices-selection',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardChoicesSelectionComponent implements OnInit {
   displayList = [];
+  @Input() public ChoiceData;
   constructor() { }
 
   ngOnInit() {
@@ -42,6 +43,7 @@ export class CardChoicesSelectionComponent implements OnInit {
         top: '-22px'
       }
     ]
+    console.log("ChoiceData : ",this.ChoiceData)
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-information-cards',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InformationCardsComponent implements OnInit {
   displayList = [];
+  @Input() public InformationData;
   constructor() { }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class InformationCardsComponent implements OnInit {
         id : 3
       }
     ]
+    console.log("childInformationData",this.InformationData)
   }
 
 }
