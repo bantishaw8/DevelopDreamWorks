@@ -1,60 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Dream Works</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="new-background">
+        <ion-title class="header" [innerText]="authheaderTitle"></ion-title>
+    </ion-toolbar>
 </ion-header>
- 
-<ion-content padding="true">
+
+
+<ion-content class="ion-padding">
+    <div class="info" [innerText]="information"></div>
+
     <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
-        <div *ngIf="!isLogin">
-            <ion-item>
-                <ion-label position="stacked">First Name</ion-label>
-                <ion-input formControlName="fname"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="stacked">Last Name</ion-label>
-                <ion-input formControlName="sname"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="stacked">Phone</ion-label>
-                <ion-input formControlName="phone" maxlength=10></ion-input>
-            </ion-item>
-        </div>
-            <ion-item>
-                <ion-label position="stacked">Username (Email)</ion-label>
-                <ion-input formControlName="email"></ion-input>
-            </ion-item>
-    
-            <div *ngIf="submitted && frm.email.errors" class="invalid-feedback">
-                <ion-item *ngIf="frm.email.errors.required">
-                    <p style="color:red">Email is required!</p>
-                </ion-item>
-                <ion-item *ngIf="frm.email.errors.email">
-                    <p style="color:red">Email must be a valid email address!</p>
-                </ion-item>
-            </div>        
-    
-            <ion-item>
-                <ion-label position="stacked">Password</ion-label>
-                <ion-input formControlName="password" type="password" ></ion-input>
-            </ion-item>
-    
-            <div *ngIf="submitted && frm.password.errors" class="invalid-feedback">
-                <ion-item *ngIf="frm.password.errors.required">
-                    <p style="color:red">Password is required!</p>
-                </ion-item>
-                <ion-item *ngIf="frm.password.errors.minlength">
-                    <p style="color:red">Password must be at least 6 characters!</p>
+        <ion-item>
+            <ion-label position="stacked" [innerText]="MobileNumber"></ion-label>
+            <ion-input class="input-data" formControlName="phone" maxlength=10></ion-input>
+        </ion-item>
+
+        <div *ngIf="showReferral">
+            <ion-checkbox [checked]="checkedRefferal" (ionChange)="enableCheckedReference(checkedRefferal)"
+                class="checked"></ion-checkbox>
+            <span class="referral-info" [innerText]="refferalCodeInfo"></span>
+
+            <div *ngIf="enableReferralCode">
+                <ion-item>
+                    <ion-input class="input-data" formControlName="referralCode"></ion-input>
                 </ion-item>
             </div>
- 
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <ion-button type="button" size="small" color="primary" fill="clear" expand="block" (click)="onSwitchAuthMode()">Switch to {{ isLogin ? 'Signup' : 'Login' }}</ion-button>
-                    <ion-button expand="block" size="medium" type="submit" [disabled]="!authForm.valid">{{ isLogin ? 'Login' : 'Signup' }}  <ion-spinner name="bubbles" *ngIf="loading"></ion-spinner></ion-button>    
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+        </div>
+
+        <div class="buttonPosition">
+            <ion-button expand="block" type="submit" [innerText]="authheaderTitle" [disabled]="!authForm.valid">
+                <ion-spinner name="bubbles" *ngIf="loading"></ion-spinner>
+            </ion-button>
+            <ion-button type="button" size="small" fill="clear" expand="block"
+                (click)="onSwitchAuthMode()" class="switchButtonClass" [innerText]="switchButton"></ion-button>
+        </div>
+
     </form>
 </ion-content>
