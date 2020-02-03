@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { dummyBackendProvider } from './interceptors/dummy.backend.interceptor';
+//import { dummyBackendProvider } from './interceptors/dummy.backend.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { dummyBackendProvider } from './interceptors/dummy.backend.interceptor';
     StatusBar,
     SplashScreen,
       // Remove this line if you want to use the real BFF API
-      dummyBackendProvider,
+     // dummyBackendProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

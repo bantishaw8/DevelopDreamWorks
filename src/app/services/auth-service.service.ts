@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -24,25 +24,60 @@ export class AuthServiceService {
     return this.currentUserSubject.value;
   }
 
-  public login(email: string, password: string) {
+  // Http Options
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  };
+
+  public login(phone: any) {
+   // const headers = new HttpHeaders().set("Content-Type", "application/json");
+
     return this.http
-      .post<any>(`${environment.bffUrl}/users/authenticate`, {
-        email,
-        password
-      })
+      .post<any>(`${environment.bffUrl}/loginUser`, phone, this.httpOptions)
       .pipe(
         map(user => {
-          user.authdata = window.btoa(email + ":" + password);
+          console.log("user ====>", user);
+          // let localData = {
+          //   "user"  : user.phone
+          // };
+          // user.authdata = window.btoa(email + ":" + password);
           localStorage.setItem("currentUser", JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
       );
+    // newUserSignUp(account) {
+    // return new Promise((resolve, reject) => {
+    //   let headers = new Headers();
+    //   headers.append('Content-Type', 'application/json');
+    //   this.http.post(`${environment.bffUrl}/loginUser`, phone, { headers: headers })
+    //     .subscribe(res => {
+    //       this.settingsInformation = res.json();
+    //       resolve(res.json());
+    //       }, (err) => {
+    //       reject(err);
+    //     });
+    // });
+    // }
   }
 
   public register(userInfo: any) {
     return this.http
-      .post<any>(`${environment.bffUrl}/users/register`, userInfo);
+    .post<any>(`${environment.bffUrl}/register`, userInfo, this.httpOptions)
+    .pipe(
+      map(user => {
+        console.log("user ====>", user);
+        // let localData = {
+        //   "user"  : user.phone
+        // };
+        // user.authdata = window.btoa(email + ":" + password);
+       // localStorage.setItem("currentUser", JSON.stringify(user));
+       // this.currentUserSubject.next(user);
+        return user;
+      })
+    );
   }
 
   public logout() {

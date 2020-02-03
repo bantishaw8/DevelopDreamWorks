@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { first } from 'rxjs/operators';
-import { stat } from 'fs';
+
 
 @Component({
   selector: "app-auth",
@@ -61,7 +61,7 @@ export class AuthPage implements OnInit {
     private authService: AuthServiceService,
     private alertController: AlertController
   ) {
-    this.router.navigate(["/"]);
+    //this.router.navigate(["/"]);
   }
 
   ngOnInit() {
@@ -82,20 +82,19 @@ export class AuthPage implements OnInit {
     }
 
     if (this.isLogin){
-      // this.loading = true;
-      // this.authService
-      //   .login(this.frm.email.value, this.frm.password.value)
-      //   .pipe(first())
-      //   .subscribe(
-      //     data => {
-      //       this.loading = false;
-      //       this.router.navigate([this.returnUrl]);
-      //     },
-      //     error => {
-      //       this.presentAlert(error.error.message);
-      //       this.loading = false;
-      //     }
-      //   );
+      this.loading = true;
+      this.authService
+        .login(value)
+        .subscribe(
+          data => {
+            this.loading = false;
+            this.router.navigate([this.returnUrl]);
+          },
+          error => {
+            this.presentAlert(error.error.message);
+            this.loading = false;
+          }
+        );
       this.loading = false;
       this.router.navigate([this.returnUrl]);
     } else {

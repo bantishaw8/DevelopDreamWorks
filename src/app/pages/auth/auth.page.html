@@ -11,7 +11,7 @@
     <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
         <ion-item>
             <ion-label position="stacked" [innerText]="MobileNumber"></ion-label>
-            <ion-input class="input-data" formControlName="phone" maxlength=10></ion-input>
+            <ion-input class="input-data" formControlName="phone" maxlength=10 type="number"></ion-input>
         </ion-item>
 
         <div *ngIf="showReferral">

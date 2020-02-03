@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  bffUrl: 'http://localhost:4000'
+  bffUrl: 'http://localhost:8000'
 };
 
 /*
