@@ -1,4 +1,27 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+.top {
+  margin-top: 15px;
+}
+
+.shopping-bag {
+  inline-size: 20px;
+  right: 18px;
+  position: absolute;
+  top: 30px;
+}
+
+.cart-number {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 7px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #fa3e3e;
+  border-radius: 10px;
+  position: absolute;
+  top: 15px;
+  right: 10px;
 }
