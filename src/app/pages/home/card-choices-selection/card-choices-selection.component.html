@@ -1,15 +1,27 @@
 <div class="header">Towards a Healthy New Year</div>
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let item of displayList" [size]="item.size">
-      <div>
+    <ion-col *ngFor="let item of firstRow" [size]="item.size">
+      <!-- <div>
         <ion-card [ngStyle]="{ 
-            'height': item.height,
-            'width': item.width,
-            'top' : item.top}" class="leftCard">
-          <img [src]="item.image" />
-        </ion-card>
-      </div>
+            'height': item?.height,
+            'width': item?.width,
+            'top' : item?.top}" class="leftCard"> -->
+          <img [src]="item?.ImageUrl" />
+        <!-- </ion-card>
+      </div> -->
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col *ngFor="let item of secondRow" [size]="item.size">
+      <!-- <div>
+        <ion-card [ngStyle]="{ 
+            'height': item?.height,
+            'width': item?.width,
+            'top' : item?.top}" class="leftCard"> -->
+          <img [src]="item?.ImageUrl" />
+        <!-- </ion-card>
+      </div> -->
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -6,44 +6,34 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card-choices-selection.component.scss'],
 })
 export class CardChoicesSelectionComponent implements OnInit {
-  displayList = [];
+  firstRow = [];
+  secondRow = [];
   @Input() public ChoiceData;
   constructor() { }
 
   ngOnInit() {
-    this.displayList = [
-      {
-        image : "https://thepromox.com/wp-content/uploads/2018/04/faasos-50-off-coupon.png",
-        size : 4,
-        height: '140px',
-        width: '80px',
-        left: '-10px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 8,
-        height: '140px',
-        width: '170px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
-      }
-    ]
-    console.log("ChoiceData : ",this.ChoiceData)
-  }
+    this.firstRow.push(this.ChoiceData[0]);
+    this.firstRow.push(this.ChoiceData[1]);
+    this.secondRow.push(this.ChoiceData[2]);
+    this.secondRow.push(this.ChoiceData[3]);
+    this.secondRow.push(this.ChoiceData[4]);
+
+    this.firstRow[0].size = 4;
+    this.firstRow[0].width  = '80px';
+    this.firstRow[0].left = '-10px';
+    this.firstRow[1].size = 8;
+    this.firstRow[1].width  = '170px';
+
+    this.firstRow.map(item => {
+      item.height = '140px';
+    });
+
+    this.secondRow.map(item => {
+      item.size = 4;
+      item.height = '90px';
+      item.width = '80px';
+      item.top =  '-22px';
+    });
+  };
 
 }
