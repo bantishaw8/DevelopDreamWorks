@@ -26,8 +26,6 @@ export class HomePage implements OnInit {
           this.secondCard.push(element)
         }
       });
-      console.log(this.firstCard)
-      console.log(this.secondCard)
     })
 
   }
