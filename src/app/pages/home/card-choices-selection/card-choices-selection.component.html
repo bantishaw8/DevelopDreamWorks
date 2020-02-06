@@ -3,10 +3,15 @@
   <ion-row>
     <ion-col *ngFor="let item of displayList" [size]="item.size">
       <div>
-        <ion-card [ngStyle]="{ 
-            'height': item.height,
-            'width': item.width,
-            'top' : item.top}" class="leftCard">
+        <ion-card
+          [ngStyle]="{
+            height: item.height,
+            width: item.width,
+            top: item.top
+          }"
+          class="leftCard"
+          routerLink="/details"
+        >
           <img [src]="item.image" />
         </ion-card>
       </div>
