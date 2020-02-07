@@ -7,10 +7,14 @@
       style="padding-top: 0;
     padding-bottom: 0;"
     >
-      <ion-card class="leftCard" routerLink="/details">
+      <ion-card class="leftCard" routerLink="/products">
         <img [src]="item.ImageUrl" class="image-place" />
         <p [innerText]="item.productName" class="product-name"></p>
       </ion-card>
+      <!-- <ion-card class="leftCard" (click)="getProducts()">
+        <img [src]="item.ImageUrl" class="image-place" />
+        <p [innerText]="item.productName" class="product-name"></p>
+      </ion-card> -->
     </ion-col>
   </ion-row>
 </ion-grid>

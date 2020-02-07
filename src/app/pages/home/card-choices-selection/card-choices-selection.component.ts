@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { CardChoiceSelectionModel } from 'src/app/models/card-choice-selection.model';
 
 @Component({
   selector: 'app-card-choices-selection',
@@ -8,10 +10,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardChoicesSelectionComponent implements OnInit {
   firstRow = [];
   secondRow = [];
-  @Input() public ChoiceData;
-  constructor() { }
+  @Input() public ChoiceData: CardChoiceSelectionModel;
+  constructor(private router: Router) { }
 
   ngOnInit() {
-  };
+  }
+
+  getProducts() {
+    this.router.navigate(['/products'], {
+      queryParams : { searchItem: this.ChoiceData.productName },
+    });
+  }
 
 }
