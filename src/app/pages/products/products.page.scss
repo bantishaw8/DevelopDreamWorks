@@ -5,7 +5,7 @@
 
 .product-description {
 	font-family: initial;
-    font-size: medium;
+	font-size: medium;
 }
 
 .product-price {
@@ -15,5 +15,33 @@
 
 .list {
 	padding-right: unset !important;
-    padding-left: unset !important;
+	padding-left: unset !important;
+}
+
+.remove-border {
+	position: initial;
+}
+
+.shopping-bag {
+	inline-size: 20px;
+	right: 18px;
+	position: absolute;
+	top: 16px;
+}
+
+.cart-number {
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	font-size: 7px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #fa3e3e;
+	border-radius: 10px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
 }
