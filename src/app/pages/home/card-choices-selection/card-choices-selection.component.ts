@@ -16,10 +16,17 @@ export class CardChoicesSelectionComponent implements OnInit {
   ngOnInit() {
   }
 
-  getProducts() {
+  getProducts(productCategory) {
+    const productData = {
+      category: productCategory.category,
+      productID: productCategory.productID,
+      productName: productCategory.productName,
+    }
     this.router.navigate(['/products'], {
-      queryParams : { searchItem: this.ChoiceData.productName },
-    });
+      queryParams: {
+        special: JSON.stringify(productData)
+      }
+    })
   }
 
 }

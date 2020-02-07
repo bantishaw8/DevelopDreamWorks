@@ -1,20 +1,11 @@
 <div class="header">Daily needs !!!</div>
 <ion-grid>
   <ion-row>
-    <ion-col
-      *ngFor="let item of ChoiceData"
-      [size]="6"
-      style="padding-top: 0;
-    padding-bottom: 0;"
-    >
-      <ion-card class="leftCard" routerLink="/products">
+    <ion-col *ngFor="let item of ChoiceData" [size]="6" style="padding-top: 0;padding-bottom: 0;">
+      <ion-card class="leftCard" (click)="getProducts(item)">
         <img [src]="item.ImageUrl" class="image-place" />
         <p [innerText]="item.productName" class="product-name"></p>
       </ion-card>
-      <!-- <ion-card class="leftCard" (click)="getProducts()">
-        <img [src]="item.ImageUrl" class="image-place" />
-        <p [innerText]="item.productName" class="product-name"></p>
-      </ion-card> -->
     </ion-col>
   </ion-row>
 </ion-grid>

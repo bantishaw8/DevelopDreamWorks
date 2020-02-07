@@ -19,28 +19,6 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProductsService {
-
-  data: Product[] = [
-    {
-      "category": "CURD",
-      "categoryProductID": "CURD000",
-      "image": "https://listedproducts.s3.ap-south-1.amazonaws.com/heritageCurd.jpg",
-      "name": "Heritage Curd -Total",
-      "price": 60,
-      "productID": "HERITAGECURDTOTAL000",
-      "weight": "450 gm"
-      },
-      {
-        "category": "MILK",
-        "categoryProductID": "MILK000",
-        "image": "https://listedproducts.s3.ap-south-1.amazonaws.com/heritageCurd.jpg",
-        "name": "Milk -Total",
-        "price": 120,
-        "productID": "MILKTOTAL000",
-        "weight": "650 gm"
-        }
-  ]
-
   private cart = [];
   private cartItemCount = new BehaviorSubject(0);
   constructor(private http: HttpClient, private router: Router) { }
