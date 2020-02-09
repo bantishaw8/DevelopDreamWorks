@@ -4,49 +4,44 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <p class="cart-number">7</p>
+    <p class="cart-number" [innerText]="cartValue"></p>
     <img src='../../../assets/shopping.png' class="shopping-bag">
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <div class="ion-padding list">
-    <ion-list>
-      <ion-item *ngFor="let p of products" class="ion-text-wrap">
-        <ion-grid>
-          <ion-row class="ion-align-items-center">
-            <ion-col size="4">
-              <img [src]="p.image" class="image-place" />
-            </ion-col>
-            <ion-col size="5">
-              <ion-row class="product-description">
-                {{p.name}}
-              </ion-row>
-              <ion-row class="product-price">
-                Rs {{p.price}}
-              </ion-row>
-            </ion-col>
-            <ion-col size="3">
-              <ion-col size="1" class="ion-align-self-center">
-                <ion-button color="medium" fill="clear" (click)="increaseCartItem(p)">
-                  <ion-icon name="add-circle" slot="icon-only"></ion-icon>
-                </ion-button>
-              </ion-col>
-              <ion-col size="1">{{p.amount}}</ion-col>
-              <ion-col size="1" class="ion-align-self-center">
-                <ion-button color="medium" fill="clear" (click)="decreaseCartItem(p)">
-                  <ion-icon name="remove-circle" slot="icon-only"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let p of products" class="ion-text-wrap">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="3" style="margin-left: -10px;">
+            <img [src]="p.image" class="image-place" />
+          </ion-col>
+          <ion-col size="5">
+            <ion-row class="product-description" [innerText]="p.name"></ion-row>
+            <ion-row class="product-price">
+              Rs {{p.price}}
+            </ion-row>
+          </ion-col>
+          <ion-col style="margin-left: 15px;" *ngIf="p.amount">
+            <div class="number-input md-number-input">
+              <button class="minus" (click)="decreaseCartItem(p)"></button>
+              <input class="quantity" min="0" name="quantity" [value]="p.amount">
+              <button class="plus" (click)="increaseCartItem(p)"></button>
+            </div>
+          </ion-col>
+          <ion-col style="margin-left: 15px;" *ngIf="!p.amount">
+            <div class="number-input add-button">
+              <button (click)="increaseCartItem(p)">Add</button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 
-    <div *ngIf="failureMessage">
-      <p [innerText]="failureMessage"></p>
-    </div>
+  <div *ngIf="failureMessage">
+    <p [innerText]="failureMessage"></p>
   </div>
 
 </ion-content>

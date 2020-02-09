@@ -16,6 +16,7 @@ export class ProductsPage implements OnInit {
   cartItemCount: BehaviorSubject<number>;
   selectedProd: any;
   failureMessage: string = "";
+  cartValue: any;
 
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   alertCtrl: any;
@@ -44,14 +45,17 @@ export class ProductsPage implements OnInit {
 
     this.cart = this.productService.getCart();
     this.cartItemCount = this.productService.getCartItemCount();
+    this.cartValue  =0;
   }
 
   decreaseCartItem(product) {
     this.productService.decreaseProduct(product);
+    this.cartValue = this.cartValue - 1;
   }
 
   increaseCartItem(product) {
     this.productService.addProduct(product);
+    this.cartValue = this.cartValue + 1;
   }
 
   removeCartItem(product) {
@@ -78,5 +82,4 @@ export class ProductsPage implements OnInit {
       this.modalCtrl.dismiss();
     });
   }
-
 }

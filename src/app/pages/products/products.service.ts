@@ -30,35 +30,34 @@ export class ProductsService {
   };
 
   getProducts(reqData: any): Observable<any> {
-    console.log("inside service");
     return this.http
       .post<any>(`${environment.bffUrl}/searchCategoryProducts`, reqData, this.httpOptions)
-        .pipe(
-          map(products => {
-            console.log(products);
-            return products;
-          })
-        );
+      .pipe(
+        map(products => {
+          console.log(products);
+          return products;
+        })
+      );
   }
 
-  getCart(){
+  getCart() {
     return this.cart;
   }
 
-  getCartItemCount(){
+  getCartItemCount() {
     return this.cartItemCount;
   }
 
-  addProduct(product){
+  addProduct(product) {
     let added = false;
-    for(let p of this.cart) {
-      if(p.id === product.id){
+    for (let p of this.cart) {
+      if (p.productID === product.productID) {
         p.amount += 1;
         added = true;
         break;
       }
     }
-    if(!added){
+    if (!added) {
       product.amount = 1;
       this.cart.push(product);
     }
@@ -67,7 +66,7 @@ export class ProductsService {
 
   decreaseProduct(product) {
     for (let [index, p] of this.cart.entries()) {
-      if (p.id === product.id) {
+      if (p.productID === product.productID) {
         p.amount -= 1;
         if (p.amount == 0) {
           this.cart.splice(index, 1);
@@ -85,6 +84,4 @@ export class ProductsService {
       }
     }
   }
-
-
 }
