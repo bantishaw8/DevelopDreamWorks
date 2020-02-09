@@ -1,17 +1,14 @@
 .image-place {
-	height: 58px;
-	width: 70px;
-	max-width: 80%
+	height: 40px;
 }
 
 .product-description {
-	font-family: initial;
-	font-size: medium;
+	font-size: 11px;
+	margin-bottom: 6px;
 }
 
 .product-price {
-	font-size: 12px;
-	font-weight: bold;
+	font-size: 11px;
 }
 
 .list {
@@ -50,6 +47,10 @@
 .number-input button {
 	background-color: transparent;
 	cursor: pointer;
+	font-size: 10px;
+    color: deepskyblue;
+	font-weight: bold;
+	margin-bottom: 3px;
 }
 
 .number-input button:before,
@@ -66,8 +67,12 @@
 }
 
 .md-number-input.number-input {
-	border: 1px solid #ddd;
+	border: 1px solid deepskyblue;
 	width: 70px;
+	border-radius: 25px;
+	position: absolute;
+    top: 0;
+    right: 0px;
 }
 
 .md-number-input.number-input button {
@@ -77,8 +82,8 @@
 
 .md-number-input.number-input button:before,
 .md-number-input.number-input button:after {
-	width: 10px;
-	background-color: #212121;
+	width: 8px;
+	background-color: deepskyblue;
 }
 
 .quantity {
@@ -86,8 +91,7 @@
 	border: solid white;
 	font-size: 12px;
 	height: 15px;
-	font-weight: bold;
-	outline: none;
+	font-family: inherit;
 	text-align: center;
 }
 
@@ -96,4 +100,11 @@
     width: 70px;
 	font-weight: bold;
 	text-align: center;
+	border-radius: 25px;
+	position: absolute;
+    top: 0;
+}
+
+.ion-item-border {
+	--border-color: white;
 }

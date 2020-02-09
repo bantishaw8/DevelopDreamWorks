@@ -11,28 +11,29 @@
 
 <ion-content fullscreen>
   <ion-list>
-    <ion-item *ngFor="let p of products" class="ion-text-wrap">
+    <ion-item *ngFor="let p of products" class="ion-text-wrap ion-item-border">
       <ion-grid>
         <ion-row class="ion-align-items-center">
-          <ion-col size="3" style="margin-left: -10px;">
+          <ion-col size="2" style="margin-left: -10px;">
             <img [src]="p.image" class="image-place" />
           </ion-col>
-          <ion-col size="5">
+          <ion-col size="7" style="margin-left: 5px;">
             <ion-row class="product-description" [innerText]="p.name"></ion-row>
+            <ion-row class="product-price" style="color: grey;" [innerText]="p.weight"></ion-row>
             <ion-row class="product-price">
-              Rs {{p.price}}
+              ₹ {{p.price}}
             </ion-row>
           </ion-col>
-          <ion-col style="margin-left: 15px;" *ngIf="p.amount">
+          <ion-col *ngIf="p.amount">
             <div class="number-input md-number-input">
               <button class="minus" (click)="decreaseCartItem(p)"></button>
               <input class="quantity" min="0" name="quantity" [value]="p.amount">
               <button class="plus" (click)="increaseCartItem(p)"></button>
             </div>
           </ion-col>
-          <ion-col style="margin-left: 15px;" *ngIf="!p.amount">
+          <ion-col *ngIf="!p.amount">
             <div class="number-input add-button">
-              <button (click)="increaseCartItem(p)">Add</button>
+              <button (click)="increaseCartItem(p)">+ ADD</button>
             </div>
           </ion-col>
         </ion-row>
