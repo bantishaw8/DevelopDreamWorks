@@ -27,6 +27,18 @@
 	top: 16px;
 }
 
+.back-button {
+	position: absolute;
+    top: 0;
+    color: white;
+}
+
+.search-box {
+	position: absolute;
+	top: 50px;
+    --background: white;
+}
+
 .cart-number {
 	width: 14px;
 	height: 14px;
@@ -107,4 +119,9 @@
 
 .ion-item-border {
 	--border-color: white;
+}
+
+.failure-message {
+	text-align: center;
+    color: grey;
 }

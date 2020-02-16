@@ -17,7 +17,8 @@ export class ProductsPage implements OnInit {
   selectedProd: any;
   failureMessage: string = "";
   cartValue: any;
-
+  productImage: string;
+  productsCopy: any;
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   alertCtrl: any;
   data: any;
@@ -32,20 +33,24 @@ export class ProductsPage implements OnInit {
       }
     })
     let searchFilter = {
-      searchItem: this.data.productName
+      searchItem: this.data.productName,
+      productHeadImage: this.data.productHeadImage
     }
     this.productService.getProducts(searchFilter).subscribe(result => {
       if (result.response === "success") {
         this.products = result.message;
+        this.productImage = result.productHeadImage
+        this.productsCopy = this.products
         this.failureMessage = null;
       } else {
+        this.productImage = searchFilter.productHeadImage
         this.failureMessage = result.message;
       }
     })
 
     this.cart = this.productService.getCart();
     this.cartItemCount = this.productService.getCartItemCount();
-    this.cartValue  =0;
+    this.cartValue = 0;
   }
 
   decreaseCartItem(product) {
@@ -81,5 +86,15 @@ export class ProductsPage implements OnInit {
     alert.present().then(() => {
       this.modalCtrl.dismiss();
     });
+  }
+
+  getItems(findItem) {
+    let find = findItem.target.value;
+    if (find && find.trim() !== '') {
+      this.products = this.productsCopy;
+      this.products = this.productService.filterItems(this.products, find);
+    } else {
+      this.products = this.productsCopy;
+    }
   }
 }

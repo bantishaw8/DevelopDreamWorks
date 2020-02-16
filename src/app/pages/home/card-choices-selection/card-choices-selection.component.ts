@@ -21,6 +21,7 @@ export class CardChoicesSelectionComponent implements OnInit {
       category: productCategory.category,
       productID: productCategory.productID,
       productName: productCategory.productName,
+      productHeadImage: productCategory.ImageUrl
     }
     this.router.navigate(['/products'], {
       queryParams: {

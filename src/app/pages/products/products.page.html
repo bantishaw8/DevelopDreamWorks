@@ -1,9 +1,10 @@
 <ion-header class="remove-border">
   <ion-toolbar>
-    <ion-title>Hi</ion-title>
-    <ion-buttons slot="start">
+    <img [src]="productImage">
+    <ion-buttons slot="start" class="back-button">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-searchbar mode="ios" class="search-box" inputmode="text" (ionInput)="getItems($event)"></ion-searchbar>
     <p class="cart-number" [innerText]="cartValue"></p>
     <img src='../../../assets/shopping.png' class="shopping-bag">
   </ion-toolbar>
@@ -41,7 +42,7 @@
     </ion-item>
   </ion-list>
 
-  <div *ngIf="failureMessage">
+  <div *ngIf="failureMessage" class="failure-message">
     <p [innerText]="failureMessage"></p>
   </div>
 

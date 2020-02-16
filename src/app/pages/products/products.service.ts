@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 export interface Product {
   category: string;
@@ -84,4 +84,11 @@ export class ProductsService {
       }
     }
   }
+
+  filterItems(source, find) {
+    return source.filter((item) => {
+      return (item.name.toLowerCase().indexOf(find.toLowerCase()) > -1);
+    })
+  }
+
 }
