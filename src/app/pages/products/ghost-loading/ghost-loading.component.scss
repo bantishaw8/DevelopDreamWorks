@@ -1,0 +1,67 @@
+@import '../../../utils/animations/ghost-animation.scss';
+
+.user {
+    overflow: hidden;
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(212, 212, 212);
+        border: solid 2px rgb(212, 212, 212);
+        border-radius: 50%;
+    }
+
+    .ion-item-border {
+        --border-color: white;
+    }
+
+    .lines {
+        margin-left: var(--avatar-gap);
+        margin-block-end: var(--ghost-row-gap);
+        width: calc(100% - var(--avatar-gap));
+
+        h2,
+        h3,
+        p {
+            background-color: gray;
+            border-radius: 4px 4px 4px 4px;
+            @include background-gradient;
+            @include animate-ghost-line;
+        }
+
+        h2 {
+            width: 50%;
+        }
+
+        h3 {
+            height: 20px;
+            width: 85%;
+        }
+
+        p {
+            height: 10px;
+            width: 50%;
+        }
+
+
+    }
+
+    &:not(:first-child),
+    &:not(:second-child) {
+        // margin-top: -5px;
+    }
+}
+
+.ion-item-border {
+	--border-color: white;
+}
+
+.colon-seperation {
+    margin-left: -10px !important;
+    margin-top: -5px !important;
+}
+
+.new-colon {
+    margin-left: 20px !important;
+    margin-top:-15px !important;
+}

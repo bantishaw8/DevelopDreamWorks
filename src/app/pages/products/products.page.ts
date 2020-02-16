@@ -3,11 +3,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductsService } from './products.service'
 import { ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-
+import { trigger } from '@angular/animations';
+import { fadeIn, fadeOut } from '../../utils/animations/fade-animations'
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
+  animations: [
+    trigger('fadeIn', fadeIn(':enter')),
+  ]
 })
 export class ProductsPage implements OnInit {
 
@@ -22,6 +26,7 @@ export class ProductsPage implements OnInit {
   @ViewChild('cart', { static: false, read: ElementRef }) fab: ElementRef;
   alertCtrl: any;
   data: any;
+  ghosts = [];
   constructor(private productService: ProductsService,
     private modalCtrl: ModalController,
     private route: ActivatedRoute) { }
@@ -36,15 +41,18 @@ export class ProductsPage implements OnInit {
       searchItem: this.data.productName,
       productHeadImage: this.data.productHeadImage
     }
+    this.ghosts = new Array(10);
     this.productService.getProducts(searchFilter).subscribe(result => {
       if (result.response === "success") {
         this.products = result.message;
         this.productImage = result.productHeadImage
         this.productsCopy = this.products
         this.failureMessage = null;
+        this.ghosts = [];
       } else {
         this.productImage = searchFilter.productHeadImage
         this.failureMessage = result.message;
+        this.ghosts = [];
       }
     })
 

@@ -1,6 +1,6 @@
 <ion-header class="remove-border">
-  <ion-toolbar>
-    <img [src]="productImage">
+  <ion-toolbar [@fadeIn]="productImage">
+    <img *ngIf="productImage" [src]="productImage">
     <ion-buttons slot="start" class="back-button">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-list>
+  <ion-list [@fadeIn]="products?.length">
     <ion-item *ngFor="let p of products" class="ion-text-wrap ion-item-border">
       <ion-grid>
         <ion-row class="ion-align-items-center">
@@ -45,5 +45,8 @@
   <div *ngIf="failureMessage" class="failure-message">
     <p [innerText]="failureMessage"></p>
   </div>
+
+  <app-ghost-loading *ngIf="!products?.length" [ghosts]="ghosts" fxLayout="row wrap">
+  </app-ghost-loading>
 
 </ion-content>
