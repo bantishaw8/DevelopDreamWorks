@@ -2,8 +2,8 @@
   <ion-buttons>
     <ion-menu-button class="top"></ion-menu-button>
   </ion-buttons>
-    <p class="cart-number">7</p>
-    <img src='../../../assets/shopping.png' class="shopping-bag">
+  <p class="cart-number">7</p>
+  <img src='../../../assets/shopping.png' class="shopping-bag">
 
 </ion-toolbar>
 
@@ -14,6 +14,14 @@
   <div *ngIf="secondCard.length">
     <app-card-choices-selection [ChoiceData]="secondCard"></app-card-choices-selection>
   </div>
+
+  <div *ngIf="!firstCard.length">
+    <app-ghost-information-card></app-ghost-information-card>
+  </div>
+  <div *ngIf="!secondCard.length">
+    <app-ghost-card-choice-card></app-ghost-card-choice-card>
+  </div>
+
   <app-trending-products></app-trending-products>
 
   <ion-card *ngIf="user">

@@ -20,9 +20,9 @@ export class HomePage implements OnInit {
     this.user = this.authService.currentUserValue;
     this.homeService.getLandingPage().subscribe(results => {
       results.message.forEach(element => {
-        if(element.category === "FIRSTCARD") {
+        if (element.category === "FIRSTCARD") {
           this.firstCard.push(element)
-        } else if(element.category === "SECONDCARD") {
+        } else if (element.category === "SECONDCARD") {
           this.secondCard.push(element)
         }
       });
