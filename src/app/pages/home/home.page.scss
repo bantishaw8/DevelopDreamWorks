@@ -4,7 +4,7 @@
 }
 
 .height-increase {
-  --min-height: 105px !important; 
+  --min-height: 105px !important;
   padding-top: 0;
 }
 
@@ -18,6 +18,25 @@
   right: 18px;
   position: absolute;
   top: 28px;
+}
+
+.address {
+  position: absolute;
+  top: 23px;
+  left: 45px;
+  width: 195px;
+}
+
+.delivery-address {
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.google-map-address {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cart-number {
@@ -37,12 +56,10 @@
   right: 10px;
 }
 
-ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios {
-  background: white !important;
-  color: grey;
-}
-
-ion-toolbar.ion-color.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios {
-  color: grey !important;
-  opacity: .5;
+.edit-image {
+  inline-size: 14px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  left: 195px;
 }

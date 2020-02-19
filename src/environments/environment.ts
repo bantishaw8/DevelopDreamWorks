@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  bffUrl: 'http://localhost:8000'
+  bffUrl: 'http://localhost:8000',
+  googleMapUrl: 'https://maps.googleapis.com/maps/api/geocode/json?'
 };
 
 /*

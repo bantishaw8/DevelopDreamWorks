@@ -27,4 +27,13 @@ export class HomeServiceService {
         })
       );
   }
+  getGoogleMapAdress(latLongObject) {
+    return this.http
+      .get<any>(`${environment.googleMapUrl}latlng=${latLongObject.latitude},${latLongObject.longitude}&key=AIzaSyD_HZNpovLkkJ5ZBuo55hWkQhSw97TSb8Q`)
+      .pipe(
+        map(results => {
+          return results;
+        })
+      );
+  }
 }
