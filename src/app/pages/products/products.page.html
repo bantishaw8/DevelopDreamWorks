@@ -1,0 +1,52 @@
+<ion-header class="remove-border">
+  <ion-toolbar [@fadeIn]="productImage">
+    <img *ngIf="productImage" [src]="productImage">
+    <ion-buttons slot="start" class="back-button">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar mode="ios" class="search-box" inputmode="text" (ionInput)="getItems($event)"></ion-searchbar>
+    <p class="cart-number" [innerText]="cartValue"></p>
+    <img src='../../../assets/shopping.png' class="shopping-bag">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list [@fadeIn]="products?.length">
+    <ion-item *ngFor="let p of products" class="ion-text-wrap ion-item-border">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2" style="margin-left: -10px;">
+            <img [src]="p.image" class="image-place" />
+          </ion-col>
+          <ion-col size="7" style="margin-left: 5px;">
+            <ion-row class="product-description" [innerText]="p.name"></ion-row>
+            <ion-row class="product-price" style="color: grey;" [innerText]="p.weight"></ion-row>
+            <ion-row class="product-price">
+              ₹ {{p.price}}
+            </ion-row>
+          </ion-col>
+          <ion-col *ngIf="p.amount">
+            <div class="number-input md-number-input">
+              <button class="minus" (click)="decreaseCartItem(p)"></button>
+              <input class="quantity" min="0" name="quantity" [value]="p.amount">
+              <button class="plus" (click)="increaseCartItem(p)"></button>
+            </div>
+          </ion-col>
+          <ion-col *ngIf="!p.amount">
+            <div class="number-input add-button">
+              <button (click)="increaseCartItem(p)">+ ADD</button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="failureMessage" class="failure-message">
+    <p [innerText]="failureMessage"></p>
+  </div>
+
+  <app-ghost-loading *ngIf="!products?.length" [ghosts]="ghosts" fxLayout="row wrap">
+  </app-ghost-loading>
+
+</ion-content>

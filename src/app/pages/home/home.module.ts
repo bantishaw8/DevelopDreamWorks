@@ -8,6 +8,8 @@ import { HomePage } from './home.page';
 import { InformationCardsComponent } from './information-cards/information-cards.component';
 import { TrendingProductsComponent } from './trending-products/trending-products.component';
 import { CardChoicesSelectionComponent } from './card-choices-selection/card-choices-selection.component';
+import { GhostInformationCardComponent } from '../home/information-cards/ghost-information-card/ghost-information-card.component';
+import { GhostCardChoiceCardComponent } from '../home/card-choices-selection/ghost-card-choice-card/ghost-card-choice-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +26,9 @@ import { CardChoicesSelectionComponent } from './card-choices-selection/card-cho
     HomePage,
     InformationCardsComponent,
     TrendingProductsComponent,
-    CardChoicesSelectionComponent
+    CardChoicesSelectionComponent,
+    GhostInformationCardComponent,
+    GhostCardChoiceCardComponent
   ]
 })
-export class HomePageModule {}
+export class HomePageModule { }

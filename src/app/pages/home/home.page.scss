@@ -1,4 +1,48 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+.top {
+  position: absolute;
+  top: -35px;
+}
+
+.height-increase {
+  --min-height: 105px !important; 
+  padding-top: 0;
+}
+
+.search-height {
+  position: absolute;
+  top: 60px;
+}
+
+.shopping-bag {
+  inline-size: 20px;
+  right: 18px;
+  position: absolute;
+  top: 30px;
+}
+
+.cart-number {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 7px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #fa3e3e;
+  border-radius: 10px;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios {
+  background: white !important;
+  color: grey;
+}
+
+ion-toolbar.ion-color.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios {
+  color: grey !important;
+  opacity: .5;
 }

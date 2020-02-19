@@ -1,0 +1,88 @@
+.new-background {
+    --background: deepskyblue;
+}
+
+.header {
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+}
+
+ion-app.force-statusbar-padding {
+    --ion-safe-area-top: 10px !important;
+}
+
+ion-header ion-toolbar:first-child {
+    padding-top: 10px;
+}
+
+
+.info {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: deepskyblue;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mobile {
+    margin-top: 30px;
+    color: grey;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.item-interactive.item-has-focus {
+    --highlight-background : deepskyblue !important;  
+}
+
+.item-interactive.ion-invalid {
+    --highlight-background: deepskyblue !important;
+}
+
+.label-stacked {
+    color: deepskyblue !important;
+}
+
+.input-data {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.checked {
+    margin-top: 15px;
+    --size: 13px;
+    --background-checked: deepskyblue;
+    --border-color-checked: deepskyblue;
+}
+
+.referral-info {
+    color: deepskyblue;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.button-solid {
+    --background: deepSkyblue !important;
+    --background-focused: deepSkyblue !important;
+    --background-hover: deepSkyblue !important;
+    --color: #ffffff;
+    --color-activated: #ffffff;
+    --color-focused: #ffffff;
+}
+
+.buttonPosition {
+    margin-top: 35px;
+}
+
+.button-clear {
+    --color-activated: deepskyblue;
+    --color-focused: deepskyblue;
+    --color: deepskyblue;
+}
+
+.switchButtonClass {
+    margin-top: 15px;
+}

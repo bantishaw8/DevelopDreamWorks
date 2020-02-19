@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { CardChoiceSelectionModel } from 'src/app/models/card-choice-selection.model';
 
 @Component({
   selector: 'app-card-choices-selection',
@@ -6,42 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-choices-selection.component.scss'],
 })
 export class CardChoicesSelectionComponent implements OnInit {
-  displayList = [];
-  constructor() { }
+  firstRow = [];
+  secondRow = [];
+  @Input() public ChoiceData: CardChoiceSelectionModel;
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.displayList = [
-      {
-        image : "https://thepromox.com/wp-content/uploads/2018/04/faasos-50-off-coupon.png",
-        size : 4,
-        height: '140px',
-        width: '80px',
-        left: '-10px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 8,
-        height: '140px',
-        width: '170px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
-      },{
-        image :  "https://i.pinimg.com/736x/86/1c/61/861c61a80c0f0be60cb889df3ea1d235.jpg",
-        size : 4,
-        height: '90px',
-        width: '80px',
-        top: '-22px'
+  }
+
+  getProducts(productCategory) {
+    const productData = {
+      category: productCategory.category,
+      productID: productCategory.productID,
+      productName: productCategory.productName,
+      productHeadImage: productCategory.ImageUrl
+    }
+    this.router.navigate(['/products'], {
+      queryParams: {
+        special: JSON.stringify(productData)
       }
-    ]
+    })
   }
 
 }

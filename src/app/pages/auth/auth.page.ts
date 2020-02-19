@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
-import { AuthServiceService } from '../../services/auth-service.service';
-import { first } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AlertController } from "@ionic/angular";
+import { AuthServiceService } from "../../services/auth-service.service";
+import { ToastController } from "@ionic/angular";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-auth",
@@ -15,54 +16,92 @@ export class AuthPage implements OnInit {
   authForm: FormGroup;
   returnUrl: string;
   loading = false;
+  isLogin = true;
+  MobileNumber = "Mobile Number";
+  refferalCodeInfo = "I have a referral code";
+  authheaderTitle = "Login";
+  information: string = "Login using OTP";
+
+  /**
+   * For Checking Refferal in Sign Up Page
+   */
+  enableReferralCode = false;
+  checkedRefferal = false;
+  showReferral = false;
+  switchButton = "Sign Up";
+
+  /**
+   * Preparing Register Object
+   */
+  registerForm = {
+    phone: [null, [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+    referralCode: [null, []]
+  };
+
+  /**
+   * Preparing Login Object
+   */
+  loginForm = {
+    phone: [null, [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]]
+  };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authService: AuthServiceService,
-    private alertController: AlertController
-  ) {
-    this.router.navigate(["/"]);
-  }
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {}
 
   ngOnInit() {
-    this.authForm = this.formBuilder.group(
-      {
-        email: [
-          "dreamWorks@gmail.com",
-          [Validators.required, Validators.email]
-        ],
-        password: ["password", [Validators.required, Validators.minLength(6)]]
-      },
-      {}
-    );
+    this.authForm = this.formBuilder.group(this.loginForm, {});
 
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
   }
 
   onSubmit(value: any): void {
     this.submitted = true;
-
     // Stop if the form validation has failed
     if (this.authForm.invalid) {
       return;
     }
 
-    this.loading = true;
-    this.authService
-      .login(this.frm.email.value, this.frm.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.loading = false;
-          this.router.navigate([this.returnUrl]);
+    if (this.isLogin) {
+      this.loading = true;
+      this.authService.login(value).subscribe(
+        async data => {
+          if (data.response === "success") {
+            this.loading = false;
+            this.router.navigate(["/home"]);
+          } else {
+            this.presentToast(data.message);
+            this.loading = false;
+          }
         },
         error => {
-          this.presentAlert(error.error.message);
+          this.presentToast(error.error.message);
           this.loading = false;
         }
       );
+    } else {
+      this.loading = true;
+      this.authService.register(value).subscribe(
+        async data => {
+          if (data.response === "success") {
+            this.loading = false;
+            this.router.navigate(["/home"]);
+          } else {
+            this.presentToast(data.message);
+            this.loading = false;
+          }
+        },
+        error => {
+          this.presentToast(error.error.message);
+          this.loading = false;
+        }
+      );
+    }
   }
 
   onReset() {
@@ -70,20 +109,42 @@ export class AuthPage implements OnInit {
     this.authForm.reset();
   }
 
-  onRegister(){
-    // codeing inprogress ..
+  onSwitchAuthMode() {
+    this.isLogin = !this.isLogin;
+    if (this.isLogin) {
+      this.information = "Login using OTP";
+      this.authheaderTitle = "Login";
+      this.showReferral = false;
+      this.switchButton = "Sign Up";
+      this.authForm = this.formBuilder.group(this.loginForm, {});
+    } else {
+      this.authheaderTitle = "Sign Up";
+      this.information = "Help us to serve you better !";
+      this.showReferral = true;
+      this.switchButton = "Login";
+      this.authForm = this.formBuilder.group(this.registerForm, {});
+    }
   }
 
-  async presentAlert(msg) {
-    const alert = await this.alertController.create({
-      header: "Alert",
-      subHeader: "",
+  enableCheckedReference(status) {
+    if (status) {
+      this.enableReferralCode = false;
+      this.checkedRefferal = false;
+    } else {
+      this.enableReferralCode = true;
+      this.checkedRefferal = true;
+    }
+  }
+
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
       message: msg,
-      buttons: ["OK"]
+      duration: 2000
     });
-
-    await alert.present();
+    toast.present();
   }
 
-  get frm() { return this.authForm.controls; }    
+  get frm() {
+    return this.authForm.controls;
+  }
 }

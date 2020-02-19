@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -24,20 +24,35 @@ export class AuthServiceService {
     return this.currentUserSubject.value;
   }
 
-  public login(email: string, password: string) {
+  // Http Options
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  };
+
+  public login(phone: any) {
     return this.http
-      .post<any>(`${environment.bffUrl}/users/authenticate`, {
-        email,
-        password
-      })
+      .post<any>(`${environment.bffUrl}/loginUser`, phone, this.httpOptions)
       .pipe(
         map(user => {
-          user.authdata = window.btoa(email + ":" + password);
           localStorage.setItem("currentUser", JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
       );
+  }
+
+  public register(userInfo: any) {
+    return this.http
+    .post<any>(`${environment.bffUrl}/register`, userInfo, this.httpOptions)
+    .pipe(
+      map(user => {
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      })
+    );
   }
 
   public logout() {

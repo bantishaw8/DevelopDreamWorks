@@ -1,0 +1,134 @@
+.image-place {
+	height: 40px;
+}
+
+.product-description {
+	font-size: 11px;
+	margin-bottom: 6px;
+}
+
+.product-price {
+	font-size: 11px;
+}
+
+.list {
+	padding-right: unset !important;
+	padding-left: unset !important;
+}
+
+.remove-border {
+	position: initial;
+}
+
+.shopping-bag {
+	inline-size: 20px;
+	right: 18px;
+	position: absolute;
+	top: 16px;
+}
+
+.back-button {
+	position: absolute;
+	top: 0;
+	color: white;
+}
+
+.search-box {
+	position: absolute;
+	top: 50px;
+	--background: white;
+}
+
+.cart-number {
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	font-size: 7px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #fa3e3e;
+	border-radius: 10px;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.number-input button {
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 10px;
+	color: deepskyblue;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.number-input button:before,
+.number-input button:after {
+	display: inline-block;
+	position: absolute;
+	content: '';
+	height: 2px;
+	transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+	transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.md-number-input.number-input {
+	border: 1px solid deepskyblue;
+	width: 70px;
+	border-radius: 25px;
+	position: absolute;
+	top: 0;
+	right: 0px;
+}
+
+.md-number-input.number-input button {
+	width: 18px;
+	height: 14px;
+}
+
+.md-number-input.number-input button:before,
+.md-number-input.number-input button:after {
+	width: 8px;
+	background-color: deepskyblue;
+}
+
+.quantity {
+	max-width: 30px;
+	border: solid white;
+	font-size: 12px;
+	height: 15px;
+	font-family: inherit;
+	text-align: center;
+}
+
+.add-button {
+	border: 1px solid #ddd;
+	width: 70px;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 25px;
+	position: absolute;
+	top: 0;
+}
+
+.ion-item-border {
+	--border-color: white;
+}
+
+.failure-message {
+	text-align: center;
+	color: grey;
+}
+
+.ghostImage {
+	width: 50%;
+	height: 50%;
+	background-color: rgb(212, 212, 212);
+	border: solid 2px rgb(212, 212, 212);
+}

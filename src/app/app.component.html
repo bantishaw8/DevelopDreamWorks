@@ -2,19 +2,21 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
+        <ion-toolbar color="primary">
+          <ion-title style="font-size: 15px;" [innerText]="'Hello, Praveen'"></ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
+            <ion-item *ngIf="p.title" [routerDirection]="'root'" [routerLink]="[p.url]" class="border-line">
+              <ion-icon *ngIf='p.icon' slot="start" [name]="p.icon" class="icon-art"></ion-icon>
+              <ion-label [innerText]="p.title"></ion-label>
             </ion-item>
+            <div *ngIf="p.showBorder">
+              <div class="border"></div>
+              <ion-label *ngIf="p.afterShow" class="showValueSize" [innerText]="p.afterShow"></ion-label>
+            </div>
           </ion-menu-toggle>
         </ion-list>
       </ion-content>

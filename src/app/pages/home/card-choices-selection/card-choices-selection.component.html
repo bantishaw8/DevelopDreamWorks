@@ -1,15 +1,11 @@
-<div class="header">Towards a Healthy New Year</div>
+<div class="header">Daily needs !!!</div>
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let item of displayList" [size]="item.size">
-      <div>
-        <ion-card [ngStyle]="{ 
-            'height': item.height,
-            'width': item.width,
-            'top' : item.top}" class="leftCard">
-          <img [src]="item.image" />
-        </ion-card>
-      </div>
+    <ion-col *ngFor="let item of ChoiceData" [size]="6" style="padding-top: 0;padding-bottom: 0;">
+      <ion-card class="leftCard" (click)="getProducts(item)">
+        <img [src]="item.ImageUrl" class="image-place" />
+        <p [innerText]="item.productName" class="product-name"></p>
+      </ion-card>
     </ion-col>
   </ion-row>
 </ion-grid>

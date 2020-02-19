@@ -5,7 +5,9 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { User } from '../models/user';
 
-const users: User[] = [{ id: 1, email: 'dreamWorks@gmail.com', password: 'password', firstName: 'Iron', lastName: 'Man' }];
+ const users: User[] = [{ id: 1, email: 'dreamWorks@gmail.com', password: 'password', firstName: 'Iron', lastName: 'Man' },
+ { id: 2, email: 'praveen@gmail.com', password: 'praveen', firstName: 'Praveen', lastName: 'Kumar' },
+ { id: 3, email: 'banti@gmail.com', password: 'banti', firstName: 'Banti', lastName: 'Shaw' }];
 
 @Injectable()
 export class DummyBackendInterceptor implements HttpInterceptor {
@@ -22,6 +24,8 @@ export class DummyBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/users/authenticate') && method === 'POST':
                     return authenticate();
+                case url.endsWith('/users/register') && method === 'POST':
+                    return register();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 default:
@@ -39,6 +43,12 @@ export class DummyBackendInterceptor implements HttpInterceptor {
                 firstName: user.firstName,
                 lastName: user.lastName
             })
+        }
+
+        function register() {
+            return ok({
+                success:'true'
+            });
         }
 
         function getUsers() {

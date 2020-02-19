@@ -1,12 +1,29 @@
-<ion-toolbar>
-  <ion-buttons>
-    <ion-menu-button></ion-menu-button>
-  </ion-buttons>
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar color="dark" class="height-increase">
+    <ion-buttons>
+      <ion-menu-button class="top"></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar autocomplete='on' color='light' class='search-height' mode='ios'></ion-searchbar>
+    <p class="cart-number">7</p>
+    <img src='../../../assets/shopping.png' class="shopping-bag">
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <app-information-cards></app-information-cards>
-  <app-card-choices-selection></app-card-choices-selection>
+  <div *ngIf="firstCard.length">
+    <app-information-cards [InformationData]="firstCard"></app-information-cards>
+  </div>
+  <div *ngIf="secondCard.length">
+    <app-card-choices-selection [ChoiceData]="secondCard"></app-card-choices-selection>
+  </div>
+
+  <div *ngIf="!firstCard.length">
+    <app-ghost-information-card></app-ghost-information-card>
+  </div>
+  <div *ngIf="!secondCard.length">
+    <app-ghost-card-choice-card></app-ghost-card-choice-card>
+  </div>
+
   <app-trending-products></app-trending-products>
 
   <ion-card *ngIf="user">

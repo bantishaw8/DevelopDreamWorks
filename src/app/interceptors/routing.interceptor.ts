@@ -12,9 +12,7 @@ export class RoutingInterceptior implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authService.currentUserValue;
-        console.log("came here..");
         if (currentUser) {
-            console.log("inside..");
             return true;
         }
 
