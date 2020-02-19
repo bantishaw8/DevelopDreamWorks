@@ -15,12 +15,35 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
-    },
-    {
-      title: 'List',
+    }, {
+      title: 'My Account',
+      url: '/home',
+      icon: 'person'
+    }, {
+      showBorder: true,
+      afterShow: 'Others'
+    }, {
+      title: 'Customer Support',
       url: '/list',
-      icon: 'list'
-    }
+      icon: 'information-circle'
+    }, {
+      title: 'Rate Us',
+      icon: 'star'
+    }, {
+      title: 'Share',
+      icon: 'share-social'
+    }, {
+      title: 'About Us',
+      icon: 'aperture'
+    }, {
+      title: 'Logout',
+      icon: 'power'
+    }, {
+      showBorder: true,
+    }, {
+      title: 'About This Release',
+      icon: 'settings'
+    },
   ];
 
   constructor(
