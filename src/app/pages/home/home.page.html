@@ -1,11 +1,13 @@
-<ion-toolbar>
-  <ion-buttons>
-    <ion-menu-button class="top"></ion-menu-button>
-  </ion-buttons>
-  <p class="cart-number">7</p>
-  <img src='../../../assets/shopping.png' class="shopping-bag">
-
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar color="dark" class="height-increase">
+    <ion-buttons>
+      <ion-menu-button class="top"></ion-menu-button>
+    </ion-buttons>
+    <ion-searchbar autocomplete='on' color='light' class='search-height' mode='ios'></ion-searchbar>
+    <p class="cart-number">7</p>
+    <img src='../../../assets/shopping.png' class="shopping-bag">
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <div *ngIf="firstCard.length">
