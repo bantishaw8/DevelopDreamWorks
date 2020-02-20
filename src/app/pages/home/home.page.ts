@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { HomeServiceService } from './home-service.service';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ModalController } from '@ionic/angular';
+import { LocationModalComponent } from '../home/location-modal/location-modal.component';
 
 @Component({
   selector: "app-home",
@@ -13,10 +14,13 @@ export class HomePage implements OnInit {
   private user: User;
   public firstCard = [];
   public secondCard = [];
-
+  public locationModal = false;
+  public generatedAddress: string;
+  
+  public currentModal = null;
   constructor(private authService: AuthServiceService,
     private homeService: HomeServiceService,
-    private geolocation: Geolocation) { }
+    public modalController: ModalController) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserValue;
@@ -29,27 +33,25 @@ export class HomePage implements OnInit {
         }
       });
     })
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-    
-    this.geolocation.getCurrentPosition(options).then((resp) => {
-      console.log("res ; ", resp)
-      let positionObject = {
-        latitude: resp.coords.latitude,
-        longitude: resp.coords.longitude
-      }
-      this.homeService.getGoogleMapAdress(positionObject).subscribe(response => {
-        console.log(response)
-      })
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
   }
 
   logout() {
     this.authService.logout();
   }
+
+  async openLocation() {
+      const modal = await this.modalController.create({
+        component: LocationModalComponent
+      });
+      
+      await modal.present();
+      this.currentModal = modal;
+
+      modal.onDidDismiss()
+      .then((data) => {
+        const user = data['data']; // Here's your selected user!
+        this.generatedAddress = user.results[0].formatted_address
+    });
+  }
+
 }
