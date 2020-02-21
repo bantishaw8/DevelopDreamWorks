@@ -10,7 +10,11 @@ import { HomeServiceService } from '../home-service.service';
   styleUrls: ['./location-modal.component.scss'],
 })
 export class LocationModalComponent implements OnInit {
-  public placeholderValue ="Search for area or landmark"
+  public placeholderValue = "Search for area or landmark";
+  public searchString: string;
+  public displayAddress = [];
+  public loadingAddress = false;
+  public address: string;
   constructor(public modalController: ModalController,
     private geolocation: Geolocation,
     private homeService: HomeServiceService,
@@ -44,4 +48,30 @@ export class LocationModalComponent implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
+  getAddress(location) {
+    if (location.length > 2) {
+      this.displayAddress = [];
+      this.loadingAddress = true;
+      this.homeService.getGoogleAPILocation(location).subscribe(result => {
+        if (result.response === 'success') {
+          this.displayAddress = result.message;
+          this.loadingAddress = false;
+        }
+      })
+    } else {
+      this.displayAddress = [];
+      this.loadingAddress = false;
+    }
+  }
+
+  selectAddress(address){
+    let sendDataToHomePage = {
+      results : [
+        {
+          formatted_address : address
+        }
+      ]
+    };
+    this.modalController.dismiss(sendDataToHomePage)
+  }
 }

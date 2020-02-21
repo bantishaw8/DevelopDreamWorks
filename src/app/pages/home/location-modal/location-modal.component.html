@@ -1,10 +1,22 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar color="dark">
-    <ion-icon class="size" name="search"></ion-icon>
-    <ion-input class="input-position" type="text" clearInput [placeholder]="placeholderValue"></ion-input>
+    <ion-searchbar mode='ios' color="dark" [(ngModel)]="searchString" [placeholder]='placeholderValue'
+      (ionChange)="getAddress(searchString)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-button expand="full" color="light" class="button-content" (click)="getLocation()">Use my location
+  <ion-button *ngIf="!loadingAddress && !displayAddress.length" expand="full" color="light" class="button-content"
+    (click)="getLocation()">
+    Use my location
   </ion-button>
+  <div *ngIf="displayAddress.length">
+    <ion-item *ngFor="let address of displayAddress" class="pointer">
+      <p class="font" [innerText]="address" (click)="selectAddress(address)"></p>
+    </ion-item>
+  </div>
+
+  <div class="spinner-center" *ngIf="loadingAddress">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
 </ion-content>

@@ -29,7 +29,21 @@ export class HomeServiceService {
   }
   getGoogleMapAdress(latLongObject) {
     return this.http
-      .get<any>(`${environment.googleMapUrl}latlng=${latLongObject.latitude},${latLongObject.longitude}&key=AIzaSyD_HZNpovLkkJ5ZBuo55hWkQhSw97TSb8Q`)
+      .get<any>(`${environment.googleMapUrl}latlng=${latLongObject.latitude},${latLongObject.longitude}&key=${environment.APIKey}`)
+      .pipe(
+        map(results => {
+          return results;
+        })
+      );
+  }
+
+  getGoogleAPILocation(location: string) {
+    const googleAPI = `${environment.googleLocationSearch}query=${location}&key=${environment.APIKey}`
+    const apiDetails = {
+      url: googleAPI
+    }
+    return this.http
+      .post<any>(`${environment.bffUrl}/getGooglePlaces`, apiDetails, this.httpOptions)
       .pipe(
         map(results => {
           return results;
