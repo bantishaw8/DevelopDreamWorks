@@ -10,6 +10,8 @@ import { TrendingProductsComponent } from './trending-products/trending-products
 import { CardChoicesSelectionComponent } from './card-choices-selection/card-choices-selection.component';
 import { GhostInformationCardComponent } from '../home/information-cards/ghost-information-card/ghost-information-card.component';
 import { GhostCardChoiceCardComponent } from '../home/card-choices-selection/ghost-card-choice-card/ghost-card-choice-card.component';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationModalComponent } from '../home/location-modal/location-modal.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +30,14 @@ import { GhostCardChoiceCardComponent } from '../home/card-choices-selection/gho
     TrendingProductsComponent,
     CardChoicesSelectionComponent,
     GhostInformationCardComponent,
-    GhostCardChoiceCardComponent
+    GhostCardChoiceCardComponent,
+    LocationModalComponent
+  ],
+  providers: [
+    Geolocation,
+  ],
+  entryComponents: [
+    LocationModalComponent
   ]
 })
 export class HomePageModule { }

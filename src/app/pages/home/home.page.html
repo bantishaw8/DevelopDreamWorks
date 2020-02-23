@@ -3,9 +3,17 @@
     <ion-buttons>
       <ion-menu-button class="top"></ion-menu-button>
     </ion-buttons>
+    <div class="address" (click)="openLocation()">
+      <div class="delivery-address" [innerText]="'Delivery Address'"></div>
+      <div *ngIf="generatedAddress else chooseLocationBlock"class="google-map-address" [innerText]="generatedAddress"></div>
+      <ng-template #chooseLocationBlock>
+        <div class="google-map-address" [innerText]="'Select Location'"></div>
+      </ng-template>
+      <img src='../../../assets/edit.png' class="edit-image">
+      </div>
     <ion-searchbar autocomplete='on' color='light' class='search-height' mode='ios'></ion-searchbar>
     <p class="cart-number">7</p>
-    <img src='../../../assets/shopping.png' class="shopping-bag">
+    <img src='../../../assets/bag.png' class="shopping-bag">
   </ion-toolbar>
 </ion-header>
 
