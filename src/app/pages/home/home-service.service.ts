@@ -18,6 +18,16 @@ export class HomeServiceService {
     })
   };
 
+  getUserProfileDetails(user) {
+    return this.http
+      .post<any>(`${environment.bffUrl}/userProfileDetails`, user, this.httpOptions)
+      .pipe(
+        map(results => {
+          return results
+        })
+      )
+  }
+
   getLandingPage() {
     return this.http
       .get<any>(`${environment.bffUrl}/getLandingPage`, this.httpOptions)
@@ -44,6 +54,16 @@ export class HomeServiceService {
     }
     return this.http
       .post<any>(`${environment.bffUrl}/getGooglePlaces`, apiDetails, this.httpOptions)
+      .pipe(
+        map(results => {
+          return results;
+        })
+      );
+  }
+
+  saveGoogleAddress(googleGeneratedAddress) {
+    return this.http
+      .post<any>(`${environment.bffUrl}/saveGoogleAddress`, googleGeneratedAddress, this.httpOptions)
       .pipe(
         map(results => {
           return results;

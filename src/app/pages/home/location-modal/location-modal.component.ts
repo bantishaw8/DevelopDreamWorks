@@ -20,7 +20,7 @@ export class LocationModalComponent implements OnInit {
     private homeService: HomeServiceService,
     private loadingController: LoadingController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getLocation() {
     this.presentLoading();
@@ -64,14 +64,26 @@ export class LocationModalComponent implements OnInit {
     }
   }
 
-  selectAddress(address){
-    let sendDataToHomePage = {
-      results : [
-        {
-          formatted_address : address
-        }
-      ]
+  selectAddress(address) {
+    const getLocalStorage = JSON.parse(localStorage.getItem("currentUser")),
+    googleAddress = {
+      address: {
+        selectedAddress: address
+      },
+      phoneNumber: getLocalStorage.message
     };
-    this.modalController.dismiss(sendDataToHomePage)
+    this.displayAddress = [];
+    this.loadingAddress = true;
+    this.homeService.saveGoogleAddress(googleAddress).subscribe(result => {
+      const sendDataToHomePage = {
+        results: [
+          {
+            formatted_address: result.message.selectedAddress
+          }
+        ]
+      }
+      this.loadingAddress = false;
+      this.modalController.dismiss(sendDataToHomePage)
+    })
   }
 }
