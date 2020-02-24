@@ -83,7 +83,6 @@ export class HomePage implements OnInit {
           if (result.response === "success") {
             this.userDetails = result.message
             if(this.userDetails.address){
-              console.log("home page",this.userDetails.address.selectedAddress);
               this.generatedAddress = this.userDetails.address.selectedAddress;
               this.commonService.setUserLocation(this.userDetails.address.selectedAddress);
             }

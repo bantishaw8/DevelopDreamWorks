@@ -7,20 +7,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <!-- <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item *ngIf="p.title" [routerDirection]="'root'" [routerLink]="[p.url]" class="border-line">
-              <ion-icon *ngIf='p.icon' slot="start" [name]="p.icon" class="icon-art"></ion-icon>
-              <ion-label [innerText]="p.title"></ion-label>
-            </ion-item>
-            <div *ngIf="p.showBorder">
-              <div class="border"></div>
-              <ion-label *ngIf="p.afterShow" class="showValueSize" [innerText]="p.afterShow"></ion-label>
-            </div>
-          </ion-menu-toggle>
-        </ion-list> -->
         <app-accordion 
-            [options]="options" 
             [menus]="menus">
         </app-accordion>
       </ion-content>
