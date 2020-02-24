@@ -1,105 +1,28 @@
+.icon-art {
+  font-size: 18px;
+  margin-right: 14px;
+}
 
-.accordion {
-	width: 100%;
-	max-width: 360px;
-	margin: auto;
-	background: #fff;
-	border-radius: 4px;
-  }
-  
-  .accordion .menu {
-	position: relative;
-	padding: 15px 15px 15px 15px;
-	color: #4d4d4d;
-	// border-bottom: 1px solid #ccc;
-	cursor: pointer;
-	transition: all 0.4s ease;
-  }
-  
-  .accordion li:last-child .menu {
-	border-bottom: 0;
-  }
-  
-  .accordion li i {
-	position: absolute;
-	top: 1.2rem;
-	left: 1rem;
-	color: #595959;
-	transition: all 0.4s ease;
-  }
-  
-//   .accordion li i.fa-chevron-down {
-// 	right: 1rem;
-// 	left: auto;
-// 	transform: rotate(270deg);
-//   }
-  
-//   .accordion li.active i.fa-chevron-down {
-// 	transform: rotate(360deg);
-//   }
+.border-line {
+  --border-color: white;
+  font-size: 12px;
+}
 
-  .accordion li i.fa-chevron-down {
-	right: 1rem;
-	left: auto;
-  }
-  
-  .accordion li.active i.fa-chevron-down {
-	transform: rotate(180deg);
-  }
-  
-  .accordion li.active .menu {
-	// color: #4c8dff;
-  }
-  
-  .accordion li.active i {
-	// color: #4c8dff;
-  }
+.border {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 10px;
+}
 
-  .submenu {
-	height: 0;
-	overflow: hidden;
-	background: #444359;
-	font-size: 14px;
-	transition: height 0.4s ease;
-  }
-  
-  .submenu li {
-	border-bottom: 1px solid #4b4a5e;
-  }
-  
-  .accordion li:last-child .submenu {
-	border-radius: 0 0 4px 4px;
-  }
-  
-  .accordion li:last-child .submenu li:last-child {
-	border-bottom: 0;
-  }
-  
-  .submenu a {
-	display: block;
-	text-decoration: none;
-	color: #d9d9d9;
-	padding: 12px;
-	padding-left: 42px;
-	transition: all 0.25s ease-in-out;
-  }
-  
-  .submenu a:hover {
-	// background: #4c8dff;
-	color: #fff;
-  }
+.showValueSize {
+  font-size: 12px;
+  color: gray;
+  margin-left: 15px;
+}
 
-  ul {
-	list-style-type: none;
-  }
+.font-label {
+  font-size: 12px;
+}
 
-  *, *:before, *:after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-  }
-  
-  .icon-art {
-    font-size: 18px;
-    margin-right: 14px;
+.sub-menu-label {
+  margin-left: 45px;
 }

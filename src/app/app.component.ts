@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { MenuConfig } from './models/menuConfig';
 import { Menu } from './models/menu';
 
 @Component({
@@ -12,7 +11,6 @@ import { Menu } from './models/menu';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  options: MenuConfig = { multi: false };
   menus: Menu[] = [
     {
       title: 'Home',
@@ -21,33 +19,30 @@ export class AppComponent {
       active: false,
     }, {
       title: 'My Account',
-      url: '/home',
       icon: 'person',
       active: false,
       submenu: [
         {
           title: 'My Address',
-          url: '',
-          icon: 'information-circle',
+          url: '/address',
         },
         {
           title: 'My Orders',
           url: '',
-          icon: 'information-circle',
         },
         {
           title: 'My Cart',
           url: '',
-          icon: 'information-circle',
         },
         {
           title: 'Wallet',
           url: '',
-          icon: 'information-circle',
         }
       ]
-    },
-    {
+    }, {
+      afterShowValue: "Others",
+      showBorder: true,
+    }, {
       title: 'Customer Support',
       url: '/list',
       icon: 'information-circle',
@@ -73,13 +68,14 @@ export class AppComponent {
       icon: 'power',
       active: false
     }, {
+      showBorder: true,
+    }, {
       title: 'About This Release',
       icon: 'settings',
       url: '/home',
       active: false
     },
   ];
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

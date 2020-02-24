@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionComponent } from './accordion/accordion.component';
+import { CommonService } from './common.service';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AccordionComponent } from './accordion/accordion.component';
   providers: [
     StatusBar,
     SplashScreen,
+    CommonService,
     // Remove this line if you want to use the real BFF API
     // dummyBackendProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

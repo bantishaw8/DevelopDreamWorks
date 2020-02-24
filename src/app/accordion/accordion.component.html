@@ -1,16 +1,28 @@
-<ul id="accordion" class="accordion" >
-  <li *ngFor="let menu of menus; let i = index" 
-    [class.active]="menu.active">
-    <div class="menu" (click)="toggle(i)">
+<div *ngFor="let menu of menus">
+  <ion-menu-toggle>
+    <ion-item *ngIf="menu.url" routerDirection="'root'" [routerLink]="[menu.url]" class="border-line">
       <ion-icon *ngIf='menu.icon' slot="start" [name]="menu.icon" class="icon-art"></ion-icon>
-      {{ menu.title }}
-      <i *ngIf="menu.submenu" class="fa fa-chevron-down"></i>
-    </div>
-    <ul class="submenu" #submenu 
-      [style.height.px]="menu.active ? submenu.scrollHeight : 0">
-      <li *ngFor="let submenu of menu.submenu">
-        <a [href]="submenu.url">{{ submenu.title }}</a>
-      </li>
-    </ul>
-  </li>
-</ul>
+      <ion-label class="font-label" [innerText]="menu.title"></ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+  <div *ngIf="menu.showBorder">
+    <div class="border"></div>
+    <ion-label *ngIf="menu.afterShowValue" class="showValueSize" [innerText]="menu.afterShowValue"></ion-label>
+  </div>
+  <ion-item button *ngIf="menu.submenu?.length>0" (click)="menu.open = !menu.open" [class.active-parent]="menu.open"
+    details="false" class="border-line">
+    <ion-icon *ngIf='menu.icon' slot="start" [name]="menu.icon" class="icon-art"></ion-icon>
+    <ion-icon *ngIf="!menu.open" slot="end" name="add"></ion-icon>
+    <ion-icon *ngIf="menu.open" slot="end" name="remove"></ion-icon>
+    <ion-label class="font-label" [innerText]="menu.title"></ion-label>
+  </ion-item>
+
+  <ion-list *ngIf="menu.open">
+    <ion-menu-toggle>
+      <ion-item *ngFor="let submenu of menu.submenu" [routerLink]="[submenu.url]" routerDirection="'root'"
+        routerLinkActive="active" class="border-line">
+        <ion-label class="sub-menu-label" [innerText]="submenu.title"></ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+  </ion-list>
+</div>
