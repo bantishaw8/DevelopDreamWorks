@@ -31,7 +31,7 @@ export class LocationModalComponent implements OnInit {
       }
       this.homeService.getGoogleMapAdress(positionObject).subscribe(response => {
         this.loadingController.dismiss();
-        this.modalController.dismiss(response);
+        this.selectAddress(response.results[0].formatted_address)
       })
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -66,12 +66,12 @@ export class LocationModalComponent implements OnInit {
 
   selectAddress(address) {
     const getLocalStorage = JSON.parse(localStorage.getItem("currentUser")),
-    googleAddress = {
-      address: {
-        selectedAddress: address
-      },
-      phoneNumber: getLocalStorage.message
-    };
+      googleAddress = {
+        address: {
+          selectedAddress: address
+        },
+        phoneNumber: getLocalStorage.message
+      };
     this.displayAddress = [];
     this.loadingAddress = true;
     this.homeService.saveGoogleAddress(googleAddress).subscribe(result => {
