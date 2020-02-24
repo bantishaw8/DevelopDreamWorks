@@ -27,7 +27,7 @@ export class AppComponent {
       submenu: [
         {
           title: 'My Address',
-          url: '',
+          url: '/address',
           icon: 'information-circle',
         },
         {

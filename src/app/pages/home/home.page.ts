@@ -6,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import { LocationModalComponent } from '../home/location-modal/location-modal.component';
 import { map, catchError, mergeMap } from 'rxjs/operators';
 import { of, forkJoin } from 'rxjs';
+import { CommonService } from 'src/app/common.service';
 
 @Component({
   selector: "app-home",
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
   public currentModal = null;
   constructor(private authService: AuthServiceService,
     private homeService: HomeServiceService,
-    public modalController: ModalController) { }
+    public modalController: ModalController,
+    private commonService: CommonService,) { }
 
 
   ngOnInit() {
@@ -81,7 +83,9 @@ export class HomePage implements OnInit {
           if (result.response === "success") {
             this.userDetails = result.message
             if(this.userDetails.address){
+              console.log("home page",this.userDetails.address.selectedAddress);
               this.generatedAddress = this.userDetails.address.selectedAddress;
+              this.commonService.setUserLocation(this.userDetails.address.selectedAddress);
             }
           }
         }),
@@ -114,6 +118,7 @@ export class HomePage implements OnInit {
       .then((data) => {
         const user = data['data']; // Here's your selected user!
         this.generatedAddress = user.results[0].formatted_address
+        this.commonService.setUserLocation(this.generatedAddress);
       });
   }
 
