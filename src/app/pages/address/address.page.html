@@ -1,50 +1,57 @@
-<ion-header class="remove-border">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="dark" class="toolbar">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>My Addresses</ion-title>
+    <ion-title class="address-font">My Addresses</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-  <ion-list>
-
-    <div>Here all saved address will be displayed code not pushed</div>
-    <div addAddress></div>
     <ng-template ngIf="true">
       <form [formGroup]="addressForm">
 
-          <ion-item>
-              <ion-label position="floating">Name</ion-label>
-              <ion-input formControlName="name" type="text" [class.invalid]="!addressForm.controls.name.valid && (addressForm.controls.firstName.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-              <ion-label position="floating">Flat/House/Office No</ion-label>
-              <ion-input formControlName="flat" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-              <ion-label position="floating">Street/Society/office Name</ion-label>
-              <ion-input formControlName="street" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Locality</ion-label>
-            <ion-input formControlName="locality" type="text" [value]="currentLocation"></ion-input>
+        <ion-item>
+          <ion-label class="label-style" position="floating">Name</ion-label>
+          <ion-input class="input-style" formControlName="name" type="text"
+            [class.invalid]="!addressForm.controls.name.valid && (addressForm.controls.firstName.dirty || submitAttempt)">
+          </ion-input>
         </ion-item>
 
-        </form>
-      </ng-template>
+        <ion-item>
+          <ion-label class="label-style" position="floating">House No</ion-label>
+          <ion-input class="input-style" formControlName="flat" type="text"></ion-input>
+        </ion-item>
 
-  </ion-list>
+        <ion-item>
+          <ion-label class="label-style" position="floating">Street Details</ion-label>
+          <ion-input class="input-style" formControlName="street" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="label-style" position="floating">Locality</ion-label>
+          <ion-input class="input-style" formControlName="locality" type="text" [value]="currentLocation"></ion-input>
+        </ion-item>
+
+      </form>
+    </ng-template>
 
 
+    <ion-segment value="home" mode="ios" class="segment-placement">
+      <ion-segment-button value="home" class="segment-button">
+        <ion-label class="label">Home</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="work" class="segment-button">
+        <ion-label class="label">Work</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="other" class="segment-button">
+        <ion-label class="label">Other</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 
-  <ion-button expand="full" color="primary" (click)="save()">Save</ion-button>
+
 
 </ion-content>
-
-
+<ion-footer class="toolbar-background">
+  <ion-button expand="full" color="primary" class="button-shadow" (click)="save()">Add Address</ion-button>
+</ion-footer>
