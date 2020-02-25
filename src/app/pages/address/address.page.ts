@@ -10,33 +10,41 @@ import { CommonService } from 'src/app/common.service';
 })
 export class AddressPage implements OnInit {
   addressForm: any;
-  currentLocation: string;
+  currentLocation: any;
   submitAttempt: Boolean = false;
-  constructor(public formBuilder: FormBuilder, private userAddress: AddressService, private commonService: CommonService) {
-    this.addressForm = formBuilder.group({
-      name: [''],
-      flat: [''],
-      street: [''],
-      locality: ['']
-  });
-   }
+  defaultAddress: any;
+  label:string;
+  constructor(public formBuilder: FormBuilder,
+    private userAddress: AddressService,
+    private commonService: CommonService) {
+    
+  }
 
   ngOnInit() {
     this.currentLocation = this.commonService.getUserLocation();
-    console.log(this.currentLocation);
-    //this.userAddress.getAddresses('userId').subscribe(result => {
-     // this.address = result;
-   // });
+    console.log(this.currentLocation)
+    this.defaultAddress = this.currentLocation.address.selectedAddress
+    this.addressForm = this.formBuilder.group({
+      name: [''],
+      flat: [''],
+      street: [''],
+      locality: [this.defaultAddress]
+    });
   }
 
   save() {
     this.submitAttempt = true;
-    console.log(this.addressForm)
-    // this.userAddress.addAddress(this.addressForm.values).subscribe(result => {
-    //   console.log(result);
-    // });
-}
+    this.addressForm.value.label = this.label;
+    const address = {
+      address : this.addressForm.value,
+      phone: this.currentLocation.mobile
+    }
+    this.userAddress.addAddress(address).subscribe(result => {
+      console.log(result);
+    });
+  }
 
-
-
+  segmentChanged(ev: any) {
+    this.label = ev.detail.value;
+  }
 }

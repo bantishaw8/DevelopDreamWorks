@@ -30,9 +30,10 @@
 
         <ion-item>
           <ion-label class="label-style" position="floating">Locality</ion-label>
-          <ion-input class="input-style" formControlName="locality" type="text" [value]="currentLocation"></ion-input>
+          <ion-input class="input-style" formControlName="locality" type="text" [value]="defaultAddress"></ion-input>
         </ion-item>
-        <ion-segment value="home" mode="ios" class="segment-placement">
+
+        <ion-segment mode="ios" (ionChange)="segmentChanged($event)" class="segment-placement">
           <ion-segment-button value="home" class="segment-button">
             <ion-label class="label">Home</ion-label>
           </ion-segment-button>
@@ -45,8 +46,6 @@
         </ion-segment>
       </form>
     </ng-template>
-
-
 
 </ion-content>
 <ion-footer class="toolbar-background">
