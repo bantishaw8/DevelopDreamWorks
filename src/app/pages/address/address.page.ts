@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AddressService } from './address.service';
-import { Address } from 'cluster';
 import { CommonService } from 'src/app/common.service';
 
 @Component({
@@ -11,7 +10,6 @@ import { CommonService } from 'src/app/common.service';
 })
 export class AddressPage implements OnInit {
   addressForm: any;
-  address: Address;
   currentLocation: string;
   submitAttempt: Boolean = false;
   constructor(public formBuilder: FormBuilder, private userAddress: AddressService, private commonService: CommonService) {
