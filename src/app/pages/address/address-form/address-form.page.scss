@@ -21,8 +21,7 @@ ion-label,
 }
 
 .list-border {
-    border-bottom: 2px solid #989aa2;
-    margin-top: 5px;
+    border-bottom: 1px solid #989aa2;
 }
 
 .back-button {
@@ -82,31 +81,4 @@ ion-label,
 
 .toolbar-background {
     background: deepskyblue;
-}
-
-.label-class {
-    font-size: 14px;
-    margin-left: 15px;
-    color: grey;
-}
-
-.saved-item {
-    --background: gray;
-    --border-color: transparent;
-    --color: WHITE;
-    font-size: 14PX;
-}
-
-.icon-item {
-    color: white;
-    font-size: 25px;
-}
-
-.address-label-class {
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: grey;
-    font-size: 14px;
-    margin-left: 15px;
 }

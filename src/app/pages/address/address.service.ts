@@ -18,9 +18,8 @@ export class AddressService {
     };
 
     addAddress(address) {
-      console.log("http req Object",address);
       return this.http
-        .post<any>(`${environment.bffUrl}/addAddress`, address, this.httpOptions)
+        .post<any>(`${environment.bffUrl}/saveAddress`, address, this.httpOptions)
         .pipe(
           map(results => {
             return results

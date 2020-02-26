@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="dark" class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="address-font">Add Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="addressForm">
+
+      <ion-item>
+        <ion-label class="label-style" position="floating">Name</ion-label>
+        <ion-input class="input-style" formControlName="name" type="text"
+          [class.invalid]="!addressForm.controls.name.valid && (addressForm.controls.firstName.dirty || submitAttempt)">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label-style" position="floating">House No</ion-label>
+        <ion-input class="input-style" formControlName="flat" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label-style" position="floating">Street Details</ion-label>
+        <ion-input class="input-style" formControlName="street" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label-style" position="floating">Locality</ion-label>
+        <ion-input class="input-style" formControlName="locality" type="text" [value]="defaultAddress"></ion-input>
+      </ion-item>
+
+      <ion-segment mode="ios" (ionChange)="segmentChanged($event)" class="segment-placement">
+        <ion-segment-button value="home" class="segment-button">
+          <ion-label class="label">Home</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="work" class="segment-button">
+          <ion-label class="label">Work</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="other" class="segment-button">
+          <ion-label class="label">Other</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </form>
+</ion-content>
+<ion-footer class="toolbar-background">
+  <ion-button expand="full" color="primary" class="button-shadow" (click)="save()">Add Address</ion-button>
+</ion-footer>

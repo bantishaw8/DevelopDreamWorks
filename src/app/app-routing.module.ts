@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'address',
     loadChildren: () => import('./pages/address/address.module').then( m => m.AddressPageModule)
+  },
+  {
+    path: 'address-form',
+    loadChildren: () => import('./pages/address/address-form/address-form.module').then( m => m.AddressFormPageModule)
   }
 
 

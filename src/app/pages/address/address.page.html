@@ -1,50 +1,32 @@
-<ion-header class="remove-border">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="dark" class="toolbar">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
-    <ion-title>My Addresses</ion-title>
+    <ion-title class="address-font">My Addresses</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-  <ion-list>
-
-    <div>Here all saved address will be displayed code not pushed</div>
-    <div addAddress></div>
-    <ng-template ngIf="true">
-      <form [formGroup]="addressForm">
-
-          <ion-item>
-              <ion-label position="floating">Name</ion-label>
-              <ion-input formControlName="name" type="text" [class.invalid]="!addressForm.controls.name.valid && (addressForm.controls.firstName.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-              <ion-label position="floating">Flat/House/Office No</ion-label>
-              <ion-input formControlName="flat" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-              <ion-label position="floating">Street/Society/office Name</ion-label>
-              <ion-input formControlName="street" type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Locality</ion-label>
-            <ion-input formControlName="locality" type="text" [value]="currentLocation"></ion-input>
-        </ion-item>
-
-        </form>
-      </ng-template>
-
-  </ion-list>
-
-
-
-  <ion-button expand="full" color="primary" (click)="save()">Save</ion-button>
+  <div *ngIf="currentLocation.address?.savedAddress.length > 0">
+    <div>
+      <ion-item class="saved-item">
+        <ion-label class="label" [innerText]="'Saved Address'"></ion-label>
+        <ion-button fill="clear" routerLink="/address-form">
+          <ion-icon name="add-circle-outline" class="icon-item"></ion-icon>
+        </ion-button>
+      </ion-item>
+      
+    </div>
+    <div *ngFor="let address of currentLocation.address.savedAddress">
+      <ion-list class="list-border">
+        <div class="address-label-class" [innerText]="address.label"></div>
+        <div class="label-class" [innerText]="address.name"></div>
+        <div class="label-class" [innerText]="address.flat"></div>
+        <div class="label-class" [innerText]="address.street"></div>
+        <div class="label-class" [innerText]="address.locality"></div>
+      </ion-list>
+    </div>
+  </div>
 
 </ion-content>
-
-

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommonService {
-  userLocation: string;
+  userLocation: any;
   constructor() { }
 
   setUserLocation(loc) {

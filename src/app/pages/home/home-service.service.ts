@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HomeServiceService {
-
   constructor(private http: HttpClient) { }
 
   // Http Options

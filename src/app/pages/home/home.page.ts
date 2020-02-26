@@ -84,8 +84,9 @@ export class HomePage implements OnInit {
             this.userDetails = result.message
             if(this.userDetails.address){
               this.generatedAddress = this.userDetails.address.selectedAddress;
-              this.commonService.setUserLocation(this.userDetails.address.selectedAddress);
+              this.commonService.setUserLocation(this.userDetails);
             }
+            console.log("this user detaoi;ls", this.userDetails)
           }
         }),
         catchError(err => {
