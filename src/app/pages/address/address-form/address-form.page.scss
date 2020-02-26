@@ -1,0 +1,84 @@
+p {
+    font-size: 0.8em;
+    color: #d2d2d2;
+}
+
+ion-slides {
+    height: 100%;
+}
+
+ion-slide {
+    display: block;
+}
+
+ion-label,
+.select-text {
+    margin-left: 10px;
+}
+
+.invalid {
+    border: 1px solid #ea6153;
+}
+
+.list-border {
+    border-bottom: 1px solid #989aa2;
+}
+
+.back-button {
+    position: absolute;
+    top: 0;
+    color: white;
+}
+
+.toolbar {
+    --ion-safe-area-top: 15px;
+}
+
+.address-font {
+    font-size: 14px;
+    position: absolute;
+    top: 21px;
+}
+
+.input-style {
+    font-size: 14px;
+    color: #989aa2
+}
+
+.label-style {
+    font-size: 14px;
+}
+
+.segment-placement {
+    margin-top: 15px;
+    width: 80%;
+    margin-left: 10px;
+}
+
+.segment-button {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    min-width: 80px;
+    max-width: 80px;
+    min-height: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: capitalize;
+    margin-left: 5px;
+    max-height: 30px;
+}
+
+.label {
+    margin-left: 0;
+}
+
+.button-shadow {
+    --box-shadow: deepskyblue;
+}
+
+.toolbar-background {
+    background: deepskyblue;
+}
