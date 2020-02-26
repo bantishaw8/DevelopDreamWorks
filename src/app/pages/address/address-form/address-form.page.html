@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!loadingSpinner">
     <form [formGroup]="addressForm">
 
       <ion-item>
@@ -45,6 +45,12 @@
       </ion-segment>
     </form>
 </ion-content>
-<ion-footer class="toolbar-background">
+<ion-footer class="toolbar-background" *ngIf="!loadingSpinner">
   <ion-button expand="full" color="primary" class="button-shadow" (click)="save()">Add Address</ion-button>
 </ion-footer>
+
+<ion-content *ngIf="loadingSpinner">
+  <div class="spinner-center" >
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+</ion-content>

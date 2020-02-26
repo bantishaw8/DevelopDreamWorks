@@ -8,25 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="currentLocation.address?.savedAddress.length > 0">
-    <div>
-      <ion-item class="saved-item">
-        <ion-label class="label" [innerText]="'Saved Address'"></ion-label>
-        <ion-button fill="clear" routerLink="/address-form">
-          <ion-icon name="add-circle-outline" class="icon-item"></ion-icon>
-        </ion-button>
-      </ion-item>
-      
-    </div>
-    <div *ngFor="let address of currentLocation.address.savedAddress">
-      <ion-list class="list-border">
-        <div class="address-label-class" [innerText]="address.label"></div>
-        <div class="label-class" [innerText]="address.name"></div>
-        <div class="label-class" [innerText]="address.flat"></div>
-        <div class="label-class" [innerText]="address.street"></div>
-        <div class="label-class" [innerText]="address.locality"></div>
-      </ion-list>
-    </div>
+  <ion-item class="saved-item">
+    <ion-label class="label" [innerText]="'Saved Address'"></ion-label>
+    <ion-button fill="clear" routerLink="/address-form">
+      <ion-icon name="add-circle-outline" class="icon-item"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <div *ngIf="!loadingSpinner && currentLocation?.address?.savedAddress?.length > 0 else noMessageBlock">
+    <ion-list class="list-border" *ngFor="let address of currentLocation.address.savedAddress">
+      <ion-icon class="trash" name="trash" (click)="deleteAddress(address)"></ion-icon>
+      <div class="address-label-class" [innerText]="address.label"></div>
+      <div class="label-class" [innerText]="address.name"></div>
+      <div class="label-class" [innerText]="address.flat"></div>
+      <div class="label-class" [innerText]="address.street"></div>
+      <div class="label-class" [innerText]="address.locality"></div>
+      <div class="border"></div>
+    </ion-list>
   </div>
 
+  <ng-template #noMessageBlock >
+    <div *ngIf="!loadingSpinner" class="no-address" [innerText]="'No Saved Address'"></div>
+  </ng-template>
+
+  <div class="spinner-center" *ngIf="loadingSpinner">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 </ion-content>

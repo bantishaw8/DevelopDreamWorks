@@ -16,8 +16,8 @@ export class AddressFormPage implements OnInit {
   currentLocation: any;
   submitAttempt: Boolean = false;
   defaultAddress: any;
-  label:string;
-
+  label: string;
+  loadingSpinner = false;
   constructor(public formBuilder: FormBuilder,
     private userAddress: AddressService,
     private commonService: CommonService,
@@ -25,8 +25,11 @@ export class AddressFormPage implements OnInit {
 
   ngOnInit() {
     this.currentLocation = this.commonService.getUserLocation();
-    console.log(this.currentLocation);
-    this.defaultAddress = this.currentLocation.address.selectedAddress
+    if (this.currentLocation.address) {
+      this.defaultAddress = this.currentLocation.address.selectedAddress
+    } else {
+      this.defaultAddress = this.currentLocation
+    }
     this.addressForm = this.formBuilder.group({
       name: [''],
       flat: [''],
@@ -36,15 +39,21 @@ export class AddressFormPage implements OnInit {
   }
 
   save() {
+    const userStoredDetails = JSON.parse(localStorage.getItem('currentUser'))
     this.submitAttempt = true;
     this.addressForm.value.label = this.label;
     const address = {
-      address : this.addressForm.value,
-      phone: this.currentLocation.mobile
+      address: this.addressForm.value,
+      phone: userStoredDetails.message
     }
+    this.loadingSpinner = true;
     this.userAddress.addAddress(address).subscribe(result => {
-      this.router.navigate(['/address']);
-      console.log(result);
+      this.loadingSpinner = false;
+      this.router.navigate(['/address'], {
+        queryParams: {
+          special: JSON.stringify(result.message)
+        }
+      })
     });
   }
 
