@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
   constructor(private authService: AuthServiceService,
     private homeService: HomeServiceService,
     public modalController: ModalController,
-    private commonService: CommonService,) { }
+    private commonService: CommonService, ) { }
 
 
   ngOnInit() {
@@ -82,11 +82,10 @@ export class HomePage implements OnInit {
         map(result => {
           if (result.response === "success") {
             this.userDetails = result.message
-            if(this.userDetails.address){
+            if (this.userDetails.address) {
               this.generatedAddress = this.userDetails.address.selectedAddress;
               this.commonService.setUserLocation(this.userDetails);
             }
-            console.log("this user detaoi;ls", this.userDetails)
           }
         }),
         catchError(err => {
@@ -118,7 +117,14 @@ export class HomePage implements OnInit {
       .then((data) => {
         const user = data['data']; // Here's your selected user!
         this.generatedAddress = user.results[0].formatted_address
-        this.commonService.setUserLocation(this.generatedAddress);
+        if (this.userDetails.address) {
+          this.userDetails.address.selectedAddress = this.generatedAddress;
+          this.commonService.setUserLocation(this.userDetails);
+        } else {
+          this.userDetails.address = {};
+          this.userDetails.address.selectedAddress = this.generatedAddress;
+          this.commonService.setUserLocation(this.userDetails);
+        }
       });
   }
 

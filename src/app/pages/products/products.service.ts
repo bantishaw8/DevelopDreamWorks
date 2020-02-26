@@ -34,7 +34,6 @@ export class ProductsService {
       .post<any>(`${environment.bffUrl}/searchCategoryProducts`, reqData, this.httpOptions)
       .pipe(
         map(products => {
-          console.log(products);
           return products;
         })
       );
