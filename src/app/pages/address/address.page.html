@@ -14,8 +14,9 @@
       <ion-icon name="add-circle-outline" class="icon-item"></ion-icon>
     </ion-button>
   </ion-item>
-  <div *ngIf="currentLocation?.address?.savedAddress?.length > 0 else noMessageBlock">
+  <div *ngIf="!loadingSpinner && currentLocation?.address?.savedAddress?.length > 0 else noMessageBlock">
     <ion-list class="list-border" *ngFor="let address of currentLocation.address.savedAddress">
+      <ion-icon class="trash" name="trash" (click)="deleteAddress(address)"></ion-icon>
       <div class="address-label-class" [innerText]="address.label"></div>
       <div class="label-class" [innerText]="address.name"></div>
       <div class="label-class" [innerText]="address.flat"></div>
@@ -25,8 +26,11 @@
     </ion-list>
   </div>
 
-  <ng-template #noMessageBlock>
-    <div class="no-address" [innerText]="'No Saved Address'"></div>
+  <ng-template #noMessageBlock >
+    <div *ngIf="!loadingSpinner" class="no-address" [innerText]="'No Saved Address'"></div>
   </ng-template>
 
+  <div class="spinner-center" *ngIf="loadingSpinner">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 </ion-content>

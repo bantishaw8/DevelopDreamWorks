@@ -122,3 +122,16 @@ ion-label,
     border-bottom: 1px solid gray;
     margin-top: 10px;
 }
+
+.trash {
+    position: absolute;
+    right: 25px;
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+}
+
+.spinner-center {
+    text-align: center;
+    margin-top: 30px;
+}

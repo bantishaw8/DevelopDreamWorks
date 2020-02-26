@@ -17,7 +17,7 @@ export class AddressFormPage implements OnInit {
   submitAttempt: Boolean = false;
   defaultAddress: any;
   label: string;
-
+  loadingSpinner = false;
   constructor(public formBuilder: FormBuilder,
     private userAddress: AddressService,
     private commonService: CommonService,
@@ -46,7 +46,9 @@ export class AddressFormPage implements OnInit {
       address: this.addressForm.value,
       phone: userStoredDetails.message
     }
+    this.loadingSpinner = true;
     this.userAddress.addAddress(address).subscribe(result => {
+      this.loadingSpinner = false;
       this.router.navigate(['/address'], {
         queryParams: {
           special: JSON.stringify(result.message)

@@ -36,6 +36,16 @@ export class AddressService {
           })
         );
     }
+
+    deleteAddress(address) {
+      return this.http
+        .post<any>(`${environment.bffUrl}/deleteAddress`, address, this.httpOptions)
+        .pipe(
+          map(results => {
+            return results;
+          })
+        );
+    }
   
 }
 
