@@ -39,7 +39,6 @@ export class AddressPage implements OnInit {
     }
     const alert = await this.alertController.create({
       message: 'Are you sure you want to delete the address ?',
-      mode: "ios",
       buttons: [
         {
           text: 'CANCEL',
