@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
 import { ActivatedRoute } from '@angular/router';
 import { AddressService } from './address.service';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-address',
   templateUrl: './address.page.html',
@@ -16,7 +17,8 @@ export class AddressPage implements OnInit {
   constructor(public formBuilder: FormBuilder,
     private commonService: CommonService,
     private route: ActivatedRoute,
-    private addressService: AddressService) {
+    private addressService: AddressService,
+    public alertController: AlertController) {
 
   }
 
@@ -29,19 +31,36 @@ export class AddressPage implements OnInit {
     })
   }
 
-  deleteAddress(addressDetails) {
-    this.loadingSpinner = true;
+  async deleteAddress(addressDetails) {
     const userStoredDetails = JSON.parse(localStorage.getItem('currentUser'))
     const sendAddress = {
       address: addressDetails,
       phone: userStoredDetails.message
     }
-    console.log(sendAddress)
-    this.addressService.deleteAddress(sendAddress)
-      .subscribe(result => {
-        this.loadingSpinner = false;
-        this.currentLocation = result.message
-        
-      })
+    const alert = await this.alertController.create({
+      message: 'Are you sure you want to delete the address ?',
+      mode: "ios",
+      buttons: [
+        {
+          text: 'CANCEL',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Cancel Delete Address');
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            this.loadingSpinner = true;
+            this.addressService.deleteAddress(sendAddress)
+              .subscribe(result => {
+                this.loadingSpinner = false;
+                this.currentLocation = result.message
+              })
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
