@@ -4,10 +4,12 @@
 
 export const environment = {
   production: false,
-  bffUrl: 'http://localhost:8000',
-  googleMapUrl: 'https://maps.googleapis.com/maps/api/geocode/json?'
+  bffUrl: "http://localhost:8000",
+  googleMapUrl: "https://maps.googleapis.com/maps/api/geocode/json?",
+  APIKey: "AIzaSyD_HZNpovLkkJ5ZBuo55hWkQhSw97TSb8Q",
+  googleLocationSearch:
+    "https://maps.googleapis.com/maps/api/place/textsearch/json?"
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
