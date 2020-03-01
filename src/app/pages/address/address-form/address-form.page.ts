@@ -26,8 +26,7 @@ export class AddressFormPage implements OnInit {
 
   ngOnInit() {
     this.currentLocation = this.commonService.getUserLocation();
-    //alert(this.currentLocation);
-    if (this.currentLocation && this.currentLocation.addAddress) {
+    if (this.currentLocation && this.currentLocation.address) {
       this.defaultAddress = this.currentLocation.address.selectedAddress;
     } else {
       this.defaultAddress = this.currentLocation ? this.currentLocation : "";
