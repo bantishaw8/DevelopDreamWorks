@@ -26,10 +26,11 @@ export class AddressFormPage implements OnInit {
 
   ngOnInit() {
     this.currentLocation = this.commonService.getUserLocation();
+
     if (this.currentLocation && this.currentLocation.address) {
       this.defaultAddress = this.currentLocation.address.selectedAddress;
     } else {
-      this.defaultAddress = this.currentLocation ? this.currentLocation : "";
+      this.defaultAddress = "";
     }
     this.addressForm = this.formBuilder.group({
       name: [""],
