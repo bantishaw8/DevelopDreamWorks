@@ -7,37 +7,29 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
+  }, {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-          canActivate: [RoutingInterceptior]
-  },
-  {
+    canActivate: [RoutingInterceptior]
+  }, {
     path: 'list',
     loadChildren: () => import('./pages/list/list.module').then(m => m.ListPageModule)
-  },
-  {
+  }, {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
-  },
-  {
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
+  }, {
     path: 'details',
-    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
-  },  {
+    loadChildren: () => import('./pages/details/details.module').then(m => m.DetailsPageModule)
+  }, {
     path: 'products',
-    loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
-  },
-  {
+    loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsPageModule)
+  }, {
     path: 'address',
-    loadChildren: () => import('./pages/address/address.module').then( m => m.AddressPageModule)
-  },
-  {
+    loadChildren: () => import('./pages/address/address.module').then(m => m.AddressPageModule)
+  }, {
     path: 'address-form',
-    loadChildren: () => import('./pages/address/address-form/address-form.module').then( m => m.AddressFormPageModule)
+    loadChildren: () => import('./pages/address/address-form/address-form.module').then(m => m.AddressFormPageModule)
   }
-
-
 ];
 
 @NgModule({
@@ -46,4 +38,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

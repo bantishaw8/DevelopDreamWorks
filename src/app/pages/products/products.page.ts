@@ -105,4 +105,16 @@ export class ProductsPage implements OnInit {
       this.products = this.productsCopy;
     }
   }
+
+  checkoutCart() {
+    const userStoredDetails = JSON.parse(localStorage.getItem("currentUser"));
+    const checkout = {
+      phone: userStoredDetails.message,
+      products: this.cart
+    }
+    this.productService.checkoutCart(checkout)
+      .subscribe(result => {
+
+      })
+  }
 }

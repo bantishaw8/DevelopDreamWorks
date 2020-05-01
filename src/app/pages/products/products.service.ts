@@ -34,7 +34,6 @@ export class ProductsService {
       .post<any>(`${environment.bffUrl}/searchCategoryProducts`, reqData, this.httpOptions)
       .pipe(
         map(products => {
-          console.log(products);
           return products;
         })
       );
@@ -61,6 +60,7 @@ export class ProductsService {
       product.amount = 1;
       this.cart.push(product);
     }
+    console.log("this cart : ",this.cart)
     this.cartItemCount.next(this.cartItemCount.value + 1);
   }
 
@@ -89,6 +89,16 @@ export class ProductsService {
     return source.filter((item) => {
       return (item.name.toLowerCase().indexOf(find.toLowerCase()) > -1);
     })
+  }
+
+  checkoutCart(cart) {
+    return this.http
+    .post<any>(`${environment.bffUrl}/checkoutCart`, cart, this.httpOptions)
+    .pipe(
+      map(products => {
+        return products;
+      })
+    );
   }
 
 }

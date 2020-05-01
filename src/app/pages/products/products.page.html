@@ -6,7 +6,7 @@
     </ion-buttons>
     <ion-searchbar mode="ios" class="search-box" inputmode="text" (ionInput)="getItems($event)"></ion-searchbar>
     <p class="cart-number" [innerText]="cartValue"></p>
-    <img src='../../../assets/shopping.png' class="shopping-bag">
+    <img src='../../../assets/shopping.png' class="shopping-bag" (click)="checkoutCart()">
   </ion-toolbar>
 </ion-header>
 

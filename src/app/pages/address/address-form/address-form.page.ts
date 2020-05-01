@@ -1,55 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { AddressService } from '../address.service';
-import { CommonService } from 'src/app/common.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import { AddressService } from "../address.service";
+import { CommonService } from "src/app/common.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-address-form',
-  templateUrl: './address-form.page.html',
-  styleUrls: ['./address-form.page.scss'],
+  selector: "app-address-form",
+  templateUrl: "./address-form.page.html",
+  styleUrls: ["./address-form.page.scss"]
 })
 export class AddressFormPage implements OnInit {
-
   addressForm: any;
   addAddress: boolean = false;
   currentLocation: any;
   submitAttempt: Boolean = false;
   defaultAddress: any;
-  label:string;
-
-  constructor(public formBuilder: FormBuilder,
+  label: string;
+  loadingSpinner = false;
+  constructor(
+    public formBuilder: FormBuilder,
     private userAddress: AddressService,
     private commonService: CommonService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.currentLocation = this.commonService.getUserLocation();
-    console.log(this.currentLocation);
-    this.defaultAddress = this.currentLocation.address.selectedAddress
+
+    if (this.currentLocation && this.currentLocation.address) {
+      this.defaultAddress = this.currentLocation.address.selectedAddress;
+    } else {
+      this.defaultAddress = "";
+    }
     this.addressForm = this.formBuilder.group({
-      name: [''],
-      flat: [''],
-      street: [''],
+      name: [""],
+      flat: [""],
+      street: [""],
       locality: [this.defaultAddress]
     });
   }
 
   save() {
+    const userStoredDetails = JSON.parse(localStorage.getItem("currentUser"));
     this.submitAttempt = true;
     this.addressForm.value.label = this.label;
     const address = {
-      address : this.addressForm.value,
-      phone: this.currentLocation.mobile
-    }
+      address: this.addressForm.value,
+      phone: userStoredDetails.message
+    };
+    this.loadingSpinner = true;
     this.userAddress.addAddress(address).subscribe(result => {
-      this.router.navigate(['/address']);
-      console.log(result);
+      this.loadingSpinner = false;
+      this.router.navigate(["/address"], {
+        queryParams: {
+          special: JSON.stringify(result.message)
+        }
+      });
     });
   }
 
   segmentChanged(ev: any) {
     this.label = ev.detail.value;
   }
-
 }
