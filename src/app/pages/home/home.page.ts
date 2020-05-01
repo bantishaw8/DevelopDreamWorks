@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
     private homeService: HomeServiceService,
     public modalController: ModalController,
     private commonService: CommonService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.user = this.authService.currentUserValue;
